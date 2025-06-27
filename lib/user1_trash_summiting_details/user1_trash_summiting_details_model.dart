@@ -10,12 +10,16 @@ class User1TrashSummitingDetailsModel
 
   String? uploadedImageUrl;
 
+  String? userAddress;
+
   ///  State fields for stateful widgets in this page.
 
   bool isDataUploading_uploadData61p = false;
   FFUploadedFile uploadedLocalFile_uploadData61p =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // State field(s) for PlacePicker widget.
+  FFPlace placePickerValue = FFPlace();
   // State field(s) for LocationField widget.
   FocusNode? locationFieldFocusNode;
   TextEditingController? locationFieldTextController;

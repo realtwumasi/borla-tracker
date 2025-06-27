@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -36,7 +37,8 @@ class _User1TrashSummitingDetailsWidgetState
     super.initState();
     _model = createModel(context, () => User1TrashSummitingDetailsModel());
 
-    _model.locationFieldTextController ??= TextEditingController();
+    _model.locationFieldTextController ??=
+        TextEditingController(text: _model.placePickerValue.address);
     _model.locationFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
@@ -313,46 +315,58 @@ class _User1TrashSummitingDetailsWidgetState
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 2.0,
+                          color: Color(0x00E0E3E7),
                         ),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 0.0, 10.0),
-                            child: Icon(
-                              Icons.location_on_rounded,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 35.0,
+                          FlutterFlowPlacePicker(
+                            iOSGoogleMapsApiKey: '',
+                            androidGoogleMapsApiKey:
+                                'AIzaSyD7fWwdWBH8TRH7XYAQVawcZgMuz3cC9BE',
+                            webGoogleMapsApiKey: '',
+                            onSelect: (place) async {
+                              safeSetState(
+                                  () => _model.placePickerValue = place);
+                            },
+                            defaultText: 'Select Location',
+                            icon: Icon(
+                              Icons.place,
+                              color: FlutterFlowTheme.of(context).info,
+                              size: 16.0,
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Use Current Location',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                            buttonOptions: FFButtonOptions(
+                              width: 200.0,
+                              height: 40.0,
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
                                   .override(
-                                    font: GoogleFonts.inter(
+                                    font: GoogleFonts.interTight(
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .titleSmall
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .titleSmall
                                           .fontStyle,
                                     ),
+                                    color: FlutterFlowTheme.of(context).info,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .titleSmall
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .titleSmall
                                         .fontStyle,
                                   ),
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ],
@@ -384,6 +398,8 @@ class _User1TrashSummitingDetailsWidgetState
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   isDense: true,
+                                  labelText: _model.placePickerValue.latLng
+                                      .toString(),
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
