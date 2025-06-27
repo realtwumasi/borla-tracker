@@ -126,6 +126,8 @@ class _Auth3WidgetState extends State<Auth3Widget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -835,7 +837,7 @@ class _Auth3WidgetState extends State<Auth3Widget>
                                                     return;
                                                   }
 
-                                                  context.goNamedAuth(
+                                                  context.pushNamedAuth(
                                                       SignUpCompletionWidget
                                                           .routeName,
                                                       context.mounted);
@@ -1509,8 +1511,8 @@ class _Auth3WidgetState extends State<Auth3Widget>
                                                       return;
                                                     }
 
-                                                    context.goNamedAuth(
-                                                        SignUpCompletionWidget
+                                                    context.pushNamedAuth(
+                                                        User1HomepageWidget
                                                             .routeName,
                                                         context.mounted);
                                                   },

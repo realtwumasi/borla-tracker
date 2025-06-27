@@ -102,9 +102,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SignUpCompletionWidget(),
         ),
         FFRoute(
-          name: User1HomeWidget.routeName,
-          path: User1HomeWidget.routePath,
-          builder: (context, params) => User1HomeWidget(),
+          name: User1HomepageWidget.routeName,
+          path: User1HomepageWidget.routePath,
+          builder: (context, params) => User1HomepageWidget(),
+        ),
+        FFRoute(
+          name: ProfileForUser1Widget.routeName,
+          path: ProfileForUser1Widget.routePath,
+          builder: (context, params) => ProfileForUser1Widget(),
+        ),
+        FFRoute(
+          name: ProfileForUser2Widget.routeName,
+          path: ProfileForUser2Widget.routePath,
+          builder: (context, params) => ProfileForUser2Widget(),
+        ),
+        FFRoute(
+          name: SuccessPageForUser1Widget.routeName,
+          path: SuccessPageForUser1Widget.routePath,
+          builder: (context, params) => SuccessPageForUser1Widget(),
+        ),
+        FFRoute(
+          name: PendingCompletedPageUser2Widget.routeName,
+          path: PendingCompletedPageUser2Widget.routePath,
+          builder: (context, params) => PendingCompletedPageUser2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

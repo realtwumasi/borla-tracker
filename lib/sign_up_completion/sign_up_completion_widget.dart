@@ -43,6 +43,7 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
     _model.phoneNumberTextController ??= TextEditingController();
     _model.phoneNumberFocusNode ??= FocusNode();
     _model.phoneNumberFocusNode!.addListener(() => safeSetState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -988,6 +989,8 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                             !_model.formKey.currentState!.validate()) {
                           return;
                         }
+
+                        context.pushNamed(User1HomepageWidget.routeName);
                       },
                       text: 'Finished!',
                       options: FFButtonOptions(

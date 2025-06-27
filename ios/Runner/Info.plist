@@ -54,7 +54,12 @@
 	<true/>
 
 
-
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>This Application requires your location</string>
+	<key>NSCameraUsageDescription</key>
+    <string>This Application requires your camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Access to Photos</string>
 
 
 
