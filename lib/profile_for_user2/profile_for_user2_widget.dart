@@ -525,7 +525,7 @@ class _ProfileForUser2WidgetState extends State<ProfileForUser2Widget>
                     GoRouter.of(context).clearRedirectLocation();
 
                     context.goNamedAuth(
-                        HomePageWidget.routeName, context.mounted);
+                        IndexpageWidget.routeName, context.mounted);
                   },
                   text: 'Log Out',
                   options: FFButtonOptions(

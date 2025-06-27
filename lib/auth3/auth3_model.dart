@@ -1,5 +1,4 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'auth3_widget.dart' show Auth3Widget;
 import 'package:flutter/material.dart';
@@ -31,8 +30,6 @@ class Auth3Model extends FlutterFlowModel<Auth3Widget> {
   late bool passwordCreateConfirmVisibility;
   String? Function(BuildContext, String?)?
       passwordCreateConfirmTextControllerValidator;
-  // State field(s) for RadioButton widget.
-  FormFieldController<String>? radioButtonValueController;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -68,7 +65,4 @@ class Auth3Model extends FlutterFlowModel<Auth3Widget> {
     passwordFocusNode?.dispose();
     passwordTextController?.dispose();
   }
-
-  /// Additional helper methods.
-  String? get radioButtonValue => radioButtonValueController?.value;
 }

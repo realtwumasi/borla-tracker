@@ -77,19 +77,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
           ? SignUpCompletionWidget()
-          : HomePageWidget(),
+          : IndexpageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
               ? SignUpCompletionWidget()
-              : HomePageWidget(),
+              : IndexpageWidget(),
         ),
         FFRoute(
-          name: HomePageWidget.routeName,
-          path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
+          name: IndexpageWidget.routeName,
+          path: IndexpageWidget.routePath,
+          builder: (context, params) => IndexpageWidget(),
         ),
         FFRoute(
           name: Auth3Widget.routeName,
@@ -125,6 +125,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: PendingCompletedPageUser2Widget.routeName,
           path: PendingCompletedPageUser2Widget.routePath,
           builder: (context, params) => PendingCompletedPageUser2Widget(),
+        ),
+        FFRoute(
+          name: User1TrashSummitingDetailsWidget.routeName,
+          path: User1TrashSummitingDetailsWidget.routePath,
+          builder: (context, params) => User1TrashSummitingDetailsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -293,7 +298,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/homePage';
+            return '/indexpage';
           }
           return null;
         },

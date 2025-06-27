@@ -53,13 +53,12 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
-
+	<key>NSCameraUsageDescription</key>
+    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>In order to upload data, this app requires permission to access the photo library.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>This Application requires your location</string>
-	<key>NSCameraUsageDescription</key>
-    <string>This Application requires your camera</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>Access to Photos</string>
 
 
 

@@ -1,5 +1,5 @@
 // Export pages
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
+export '/pages/indexpage/indexpage_widget.dart' show IndexpageWidget;
 export '/auth3/auth3_widget.dart' show Auth3Widget;
 export '/sign_up_completion/sign_up_completion_widget.dart'
     show SignUpCompletionWidget;
@@ -12,3 +12,5 @@ export '/success_page_for_user1/success_page_for_user1_widget.dart'
     show SuccessPageForUser1Widget;
 export '/pending_completed_page_user2/pending_completed_page_user2_widget.dart'
     show PendingCompletedPageUser2Widget;
+export '/user1_trash_summiting_details/user1_trash_summiting_details_widget.dart'
+    show User1TrashSummitingDetailsWidget;
