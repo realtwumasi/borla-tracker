@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "809441537054",
+    "project_id": "borla-tracker",
+    "storage_bucket": "borla-tracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809441537054:android:8ba3e58cb335e1fc88120f",
+        "android_client_info": {
+          "package_name": "com.mycompany.borlatracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp5wi7kV3gXJwxqt17clmcFcE3kqIWu2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
