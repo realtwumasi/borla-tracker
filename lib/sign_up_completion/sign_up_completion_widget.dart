@@ -1,5 +1,8 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -204,30 +207,29 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                                       .fontStyle,
                                             ),
                                         errorStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .titleSmall
                                             .override(
-                                              font: GoogleFonts.inter(
+                                              font: GoogleFonts.interTight(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                        .titleSmall
                                                         .fontWeight,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                        .titleSmall
                                                         .fontStyle,
                                               ),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
-                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                      .titleSmall
                                                       .fontWeight,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                      .titleSmall
                                                       .fontStyle,
                                             ),
                                         enabledBorder: OutlineInputBorder(
@@ -301,8 +303,8 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                                     .titleSmall
                                                     .fontStyle,
                                           ),
-                                      cursorColor:
-                                          FlutterFlowTheme.of(context).primary,
+                                      cursorColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
                                       validator: _model
                                           .firstNameTextControllerValidator
                                           .asValidator(context),
@@ -667,7 +669,7 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                       focusNode: _model.phoneNumberFocusNode,
                                       autofocus: true,
                                       textCapitalization:
-                                          TextCapitalization.words,
+                                          TextCapitalization.none,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'Phone number',
@@ -815,6 +817,10 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                                     .bodyLarge
                                                     .fontStyle,
                                           ),
+                                      maxLength: 10,
+                                      maxLengthEnforcement:
+                                          MaxLengthEnforcement.enforced,
+                                      keyboardType: TextInputType.number,
                                       cursorColor:
                                           FlutterFlowTheme.of(context).primary,
                                       validator: _model
@@ -828,7 +834,7 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                               selection: newValue.selection,
                                               text: newValue.text
                                                   .toCapitalization(
-                                                      TextCapitalization.words),
+                                                      TextCapitalization.none),
                                             );
                                           }),
                                       ],
@@ -865,7 +871,7 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                         ChipData('Male')
                                       ],
                                       onChanged: (val) => safeSetState(() =>
-                                          _model.choiceChipsValue1 =
+                                          _model.genderValue =
                                               val?.firstOrNull),
                                       selectedChipStyle: ChipStyle(
                                         backgroundColor:
@@ -954,175 +960,123 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                       multiselect: false,
                                       alignment: WrapAlignment.start,
                                       controller:
-                                          _model.choiceChipsValueController1 ??=
+                                          _model.genderValueController ??=
                                               FormFieldController<List<String>>(
                                         [],
                                       ),
                                       wrapped: true,
                                     ),
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            28.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Select Account Type',
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineSmall
-                                              .override(
-                                                font: GoogleFonts.interTight(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineSmall
-                                                          .fontStyle,
-                                                ),
-                                                letterSpacing: 0.0,
+                                    Text(
+                                      'Select Account Type',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            font: GoogleFonts.interTight(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMedium
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                    AuthUserStreamWidget(
+                                      builder: (context) =>
+                                          FlutterFlowRadioButton(
+                                        options: [
+                                          valueOrDefault<String>(
+                                            valueOrDefault(
+                                                currentUserDocument
+                                                    ?.accountType,
+                                                ''),
+                                            'Personal',
+                                          ),
+                                          valueOrDefault<String>(
+                                            valueOrDefault(
+                                                currentUserDocument
+                                                    ?.accountType,
+                                                ''),
+                                            'Waste Management',
+                                          )
+                                        ].toList(),
+                                        onChanged: (val) => safeSetState(() {}),
+                                        controller: _model
+                                                .radioButtonAccountTypeValueController ??=
+                                            FormFieldController<String>(null),
+                                        optionHeight: 32.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineSmall
+                                                        .labelMedium
                                                         .fontWeight,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineSmall
+                                                        .labelMedium
                                                         .fontStyle,
                                               ),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 0.0, 0.0),
-                                        child: FlutterFlowChoiceChips(
-                                          options: [
-                                            ChipData('Personal'),
-                                            ChipData('Waste Manager')
-                                          ],
-                                          onChanged: (val) => safeSetState(() =>
-                                              _model.choiceChipsValue2 =
-                                                  val?.firstOrNull),
-                                          selectedChipStyle: ChipStyle(
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            iconSize: 20.0,
-                                            labelPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            elevation: 0.0,
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                            borderWidth: 2.0,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          unselectedChipStyle: ChipStyle(
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            iconSize: 18.0,
-                                            labelPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            elevation: 0.0,
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                            borderWidth: 2.0,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          chipSpacing: 12.0,
-                                          rowSpacing: 12.0,
-                                          multiselect: false,
-                                          alignment: WrapAlignment.start,
-                                          controller: _model
-                                                  .choiceChipsValueController2 ??=
-                                              FormFieldController<List<String>>(
-                                            [],
-                                          ),
-                                          wrapped: true,
-                                        ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
+                                        selectedTextStyle: FlutterFlowTheme.of(
+                                                context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                        buttonPosition:
+                                            RadioButtonPosition.left,
+                                        direction: Axis.vertical,
+                                        radioButtonColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        inactiveRadioButtonColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                        toggleable: false,
+                                        horizontalAlignment:
+                                            WrapAlignment.start,
+                                        verticalAlignment:
+                                            WrapCrossAlignment.start,
                                       ),
                                     ),
                                   ]
@@ -1147,12 +1101,29 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                         EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (_model.formKey.currentState == null ||
-                            !_model.formKey.currentState!.validate()) {
-                          return;
+                        context.pushNamed(User1HomepageWidget.routeName);
+
+                        if (valueOrDefault(
+                                currentUserDocument?.accountType, '') ==
+                            'Personal') {
+                          context.pushNamed(ProfileForUser1Widget.routeName);
+                        } else {
+                          if (valueOrDefault(
+                                  currentUserDocument?.accountType, '') ==
+                              'Waste Management') {
+                            context.pushNamed(ProfileForUser2Widget.routeName);
+                          }
                         }
 
-                        context.pushNamed(User1HomepageWidget.routeName);
+                        await currentUserReference!
+                            .update(createUser1RecordData(
+                          firstName: _model.firstNameTextController.text,
+                          lastName: _model.lastNameTextController.text,
+                          phoneNumber: _model.phoneNumberTextController.text,
+                          location: _model.locationTextController.text,
+                          gender: _model.genderValue,
+                          accountType: _model.radioButtonAccountTypeValue,
+                        ));
                       },
                       text: 'Finished!',
                       options: FFButtonOptions(

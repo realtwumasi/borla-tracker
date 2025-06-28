@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -821,6 +822,15 @@ class _Auth3WidgetState extends State<Auth3Widget>
                                                   return;
                                                 }
 
+                                                await User1Record.collection
+                                                    .doc(user.uid)
+                                                    .update(
+                                                        createUser1RecordData(
+                                                      email: _model
+                                                          .emailAddressCreateTextController
+                                                          .text,
+                                                    ));
+
                                                 context.pushNamedAuth(
                                                     SignUpCompletionWidget
                                                         .routeName,
@@ -1321,10 +1331,38 @@ class _Auth3WidgetState extends State<Auth3Widget>
                                                     return;
                                                   }
 
-                                                  context.pushNamedAuth(
-                                                      User1HomepageWidget
-                                                          .routeName,
-                                                      context.mounted);
+                                                  if (valueOrDefault(
+                                                          currentUserDocument
+                                                              ?.accountType,
+                                                          '') ==
+                                                      'Personal') {
+                                                    context.pushNamedAuth(
+                                                        User1HomepageWidget
+                                                            .routeName,
+                                                        context.mounted);
+                                                  } else {
+                                                    if (valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.accountType,
+                                                            '') ==
+                                                        'Waste Management') {
+                                                      context.goNamedAuth(
+                                                        User2HomePageWidget
+                                                            .routeName,
+                                                        context.mounted,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .rightToLeft,
+                                                          ),
+                                                        },
+                                                      );
+                                                    }
+                                                  }
                                                 },
                                                 text: 'Sign In',
                                                 options: FFButtonOptions(

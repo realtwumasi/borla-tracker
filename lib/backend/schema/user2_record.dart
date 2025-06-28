@@ -7,8 +7,8 @@ import '/backend/schema/util/firestore_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class User1Record extends FirestoreRecord {
-  User1Record._(
+class User2Record extends FirestoreRecord {
+  User2Record._(
     DocumentReference reference,
     Map<String, dynamic> data,
   ) : super(reference, data) {
@@ -45,6 +45,21 @@ class User1Record extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "edited_time" field.
+  DateTime? _editedTime;
+  DateTime? get editedTime => _editedTime;
+  bool hasEditedTime() => _editedTime != null;
+
+  // "bio" field.
+  String? _bio;
+  String get bio => _bio ?? '';
+  bool hasBio() => _bio != null;
+
+  // "user_name" field.
+  String? _userName;
+  String get userName => _userName ?? '';
+  bool hasUserName() => _userName != null;
+
   // "firstName" field.
   String? _firstName;
   String get firstName => _firstName ?? '';
@@ -65,11 +80,6 @@ class User1Record extends FirestoreRecord {
   String get gender => _gender ?? '';
   bool hasGender() => _gender != null;
 
-  // "is_Personal" field.
-  bool? _isPersonal;
-  bool get isPersonal => _isPersonal ?? false;
-  bool hasIsPersonal() => _isPersonal != null;
-
   // "accountType" field.
   String? _accountType;
   String get accountType => _accountType ?? '';
@@ -82,59 +92,63 @@ class User1Record extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _editedTime = snapshotData['edited_time'] as DateTime?;
+    _bio = snapshotData['bio'] as String?;
+    _userName = snapshotData['user_name'] as String?;
     _firstName = snapshotData['firstName'] as String?;
     _lastName = snapshotData['lastName'] as String?;
     _location = snapshotData['location'] as String?;
     _gender = snapshotData['gender'] as String?;
-    _isPersonal = snapshotData['is_Personal'] as bool?;
     _accountType = snapshotData['accountType'] as String?;
   }
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('user1');
+      FirebaseFirestore.instance.collection('user2');
 
-  static Stream<User1Record> getDocument(DocumentReference ref) =>
-      ref.snapshots().map((s) => User1Record.fromSnapshot(s));
+  static Stream<User2Record> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => User2Record.fromSnapshot(s));
 
-  static Future<User1Record> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then((s) => User1Record.fromSnapshot(s));
+  static Future<User2Record> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => User2Record.fromSnapshot(s));
 
-  static User1Record fromSnapshot(DocumentSnapshot snapshot) => User1Record._(
+  static User2Record fromSnapshot(DocumentSnapshot snapshot) => User2Record._(
         snapshot.reference,
         mapFromFirestore(snapshot.data() as Map<String, dynamic>),
       );
 
-  static User1Record getDocumentFromData(
+  static User2Record getDocumentFromData(
     Map<String, dynamic> data,
     DocumentReference reference,
   ) =>
-      User1Record._(reference, mapFromFirestore(data));
+      User2Record._(reference, mapFromFirestore(data));
 
   @override
   String toString() =>
-      'User1Record(reference: ${reference.path}, data: $snapshotData)';
+      'User2Record(reference: ${reference.path}, data: $snapshotData)';
 
   @override
   int get hashCode => reference.path.hashCode;
 
   @override
   bool operator ==(other) =>
-      other is User1Record &&
+      other is User2Record &&
       reference.path.hashCode == other.reference.path.hashCode;
 }
 
-Map<String, dynamic> createUser1RecordData({
+Map<String, dynamic> createUser2RecordData({
   String? email,
   String? displayName,
   String? photoUrl,
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  DateTime? editedTime,
+  String? bio,
+  String? userName,
   String? firstName,
   String? lastName,
   String? location,
   String? gender,
-  bool? isPersonal,
   String? accountType,
 }) {
   final firestoreData = mapToFirestore(
@@ -145,11 +159,13 @@ Map<String, dynamic> createUser1RecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'edited_time': editedTime,
+      'bio': bio,
+      'user_name': userName,
       'firstName': firstName,
       'lastName': lastName,
       'location': location,
       'gender': gender,
-      'is_Personal': isPersonal,
       'accountType': accountType,
     }.withoutNulls,
   );
@@ -157,41 +173,45 @@ Map<String, dynamic> createUser1RecordData({
   return firestoreData;
 }
 
-class User1RecordDocumentEquality implements Equality<User1Record> {
-  const User1RecordDocumentEquality();
+class User2RecordDocumentEquality implements Equality<User2Record> {
+  const User2RecordDocumentEquality();
 
   @override
-  bool equals(User1Record? e1, User1Record? e2) {
+  bool equals(User2Record? e1, User2Record? e2) {
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.editedTime == e2?.editedTime &&
+        e1?.bio == e2?.bio &&
+        e1?.userName == e2?.userName &&
         e1?.firstName == e2?.firstName &&
         e1?.lastName == e2?.lastName &&
         e1?.location == e2?.location &&
         e1?.gender == e2?.gender &&
-        e1?.isPersonal == e2?.isPersonal &&
         e1?.accountType == e2?.accountType;
   }
 
   @override
-  int hash(User1Record? e) => const ListEquality().hash([
+  int hash(User2Record? e) => const ListEquality().hash([
         e?.email,
         e?.displayName,
         e?.photoUrl,
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
+        e?.editedTime,
+        e?.bio,
+        e?.userName,
         e?.firstName,
         e?.lastName,
         e?.location,
         e?.gender,
-        e?.isPersonal,
         e?.accountType
       ]);
 
   @override
-  bool isValidKey(Object? o) => o is User1Record;
+  bool isValidKey(Object? o) => o is User2Record;
 }

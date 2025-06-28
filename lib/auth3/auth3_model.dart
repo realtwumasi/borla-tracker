@@ -4,6 +4,10 @@ import 'auth3_widget.dart' show Auth3Widget;
 import 'package:flutter/material.dart';
 
 class Auth3Model extends FlutterFlowModel<Auth3Widget> {
+  ///  Local state fields for this page.
+  /// var for personal and waste management
+  String? currentUserRecord;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TabBar widget.

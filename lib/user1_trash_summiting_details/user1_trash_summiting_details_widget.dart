@@ -38,7 +38,7 @@ class _User1TrashSummitingDetailsWidgetState
     _model = createModel(context, () => User1TrashSummitingDetailsModel());
 
     _model.locationFieldTextController ??=
-        TextEditingController(text: _model.placePickerValue.address);
+        TextEditingController(text: _model.placePickerValue.name);
     _model.locationFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({

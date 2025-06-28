@@ -123,6 +123,8 @@ final parametersBuilderMap =
   'Success_page_for_user1': ParameterData.none(),
   'pending_completed_page_user2': ParameterData.none(),
   'user1_trash_summiting_details': ParameterData.none(),
+  'task_pending_completed_user1': ParameterData.none(),
+  'user2_homePage': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

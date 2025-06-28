@@ -5,6 +5,10 @@ import 'sign_up_completion_widget.dart' show SignUpCompletionWidget;
 import 'package:flutter/material.dart';
 
 class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
+  ///  Local state fields for this page.
+
+  String? accountTypeVariable;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -40,18 +44,13 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   FocusNode? phoneNumberFocusNode;
   TextEditingController? phoneNumberTextController;
   String? Function(BuildContext, String?)? phoneNumberTextControllerValidator;
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController1;
-  String? get choiceChipsValue1 =>
-      choiceChipsValueController1?.value?.firstOrNull;
-  set choiceChipsValue1(String? val) =>
-      choiceChipsValueController1?.value = val != null ? [val] : [];
-  // State field(s) for ChoiceChips widget.
-  FormFieldController<List<String>>? choiceChipsValueController2;
-  String? get choiceChipsValue2 =>
-      choiceChipsValueController2?.value?.firstOrNull;
-  set choiceChipsValue2(String? val) =>
-      choiceChipsValueController2?.value = val != null ? [val] : [];
+  // State field(s) for gender widget.
+  FormFieldController<List<String>>? genderValueController;
+  String? get genderValue => genderValueController?.value?.firstOrNull;
+  set genderValue(String? val) =>
+      genderValueController?.value = val != null ? [val] : [];
+  // State field(s) for RadioButtonAccountType widget.
+  FormFieldController<String>? radioButtonAccountTypeValueController;
 
   @override
   void initState(BuildContext context) {
@@ -73,4 +72,8 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
     phoneNumberFocusNode?.dispose();
     phoneNumberTextController?.dispose();
   }
+
+  /// Additional helper methods.
+  String? get radioButtonAccountTypeValue =>
+      radioButtonAccountTypeValueController?.value;
 }

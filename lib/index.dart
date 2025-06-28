@@ -14,3 +14,6 @@ export '/pending_completed_page_user2/pending_completed_page_user2_widget.dart'
     show PendingCompletedPageUser2Widget;
 export '/user1_trash_summiting_details/user1_trash_summiting_details_widget.dart'
     show User1TrashSummitingDetailsWidget;
+export '/task_pending_completed_user1/task_pending_completed_user1_widget.dart'
+    show TaskPendingCompletedUser1Widget;
+export '/user2_home_page/user2_home_page_widget.dart' show User2HomePageWidget;
