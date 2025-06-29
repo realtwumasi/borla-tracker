@@ -1101,6 +1101,14 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                         EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        if (_model.formKey.currentState == null ||
+                            !_model.formKey.currentState!.validate()) {
+                          return;
+                        }
+                        if (_model.radioButtonAccountTypeValue == null) {
+                          return;
+                        }
+
                         context.pushNamed(User1HomepageWidget.routeName);
 
                         if (valueOrDefault(

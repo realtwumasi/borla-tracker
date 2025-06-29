@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'user2_request_card_view_model.dart';
 export 'user2_request_card_view_model.dart';
 
@@ -77,7 +78,7 @@ class _User2RequestCardViewWidgetState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(100.0),
                       child: Image.asset(
                         'assets/images/user.png',
                         width: double.infinity,
@@ -86,10 +87,10 @@ class _User2RequestCardViewWidgetState
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                         child: AuthUserStreamWidget(
                           builder: (context) => Text(
                             valueOrDefault(currentUserDocument?.firstName, ''),
@@ -192,7 +193,7 @@ class _User2RequestCardViewWidgetState
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
@@ -275,8 +276,7 @@ class _User2RequestCardViewWidgetState
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      context.pushNamed(
-                          User1TrashSummitingDetailsWidget.routeName);
+                      context.pushNamed(GooglemapsWidget.routeName);
                     },
                     child: Container(
                       width: 200.0,
@@ -303,6 +303,70 @@ class _User2RequestCardViewWidgetState
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Text(
                         'Track',
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  font: GoogleFonts.interTight(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .fontStyle,
+                                  ),
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .fontStyle,
+                                ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      await launchUrl(Uri(
+                        scheme: 'tel',
+                        path: currentPhoneNumber,
+                      ));
+                    },
+                    child: Container(
+                      width: 200.0,
+                      height: 44.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primary,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 4.0,
+                            color: Color(0x33000000),
+                            offset: Offset(
+                              0.0,
+                              2.0,
+                            ),
+                          )
+                        ],
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(12.0),
+                          bottomRight: Radius.circular(12.0),
+                          topLeft: Radius.circular(12.0),
+                          topRight: Radius.circular(12.0),
+                        ),
+                      ),
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Text(
+                        'Call',
                         style:
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   font: GoogleFonts.interTight(

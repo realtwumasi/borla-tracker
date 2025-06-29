@@ -3,8 +3,9 @@ export '/pages/indexpage/indexpage_widget.dart' show IndexpageWidget;
 export '/auth3/auth3_widget.dart' show Auth3Widget;
 export '/sign_up_completion/sign_up_completion_widget.dart'
     show SignUpCompletionWidget;
-export '/user1_homepage/user1_homepage_widget.dart' show User1HomepageWidget;
-export '/profile_for_user1/profile_for_user1_widget.dart'
+export '/pages/user1_homepage/user1_homepage_widget.dart'
+    show User1HomepageWidget;
+export '/pages/profile_for_user1/profile_for_user1_widget.dart'
     show ProfileForUser1Widget;
 export '/profile_for_user2/profile_for_user2_widget.dart'
     show ProfileForUser2Widget;
@@ -12,8 +13,9 @@ export '/success_page_for_user1/success_page_for_user1_widget.dart'
     show SuccessPageForUser1Widget;
 export '/pending_completed_page_user2/pending_completed_page_user2_widget.dart'
     show PendingCompletedPageUser2Widget;
-export '/user1_trash_summiting_details/user1_trash_summiting_details_widget.dart'
+export '/pages/user1_trash_summiting_details/user1_trash_summiting_details_widget.dart'
     show User1TrashSummitingDetailsWidget;
-export '/task_pending_completed_user1/task_pending_completed_user1_widget.dart'
+export '/pages/task_pending_completed_user1/task_pending_completed_user1_widget.dart'
     show TaskPendingCompletedUser1Widget;
 export '/user2_home_page/user2_home_page_widget.dart' show User2HomePageWidget;
+export '/googlemaps/googlemaps_widget.dart' show GooglemapsWidget;

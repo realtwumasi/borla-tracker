@@ -1,7 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/components/user1_ecowarrior_card_view_widget.dart';
+import '/components/user1_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/user1_ecowarrior_card_view/user1_ecowarrior_card_view_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -130,6 +131,41 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget> {
                             ),
                           ),
                         ),
+                        Builder(
+                          builder: (context) => InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        FocusScope.of(dialogContext).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
+                                      child: User1NavWidget(),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Icon(
+                              Icons.notes_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30.0,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -198,24 +234,24 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget> {
                                 child: Text(
                                   'Recently Active',
                                   style: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                      .titleSmall
                                       .override(
-                                        font: GoogleFonts.inter(
+                                        font: GoogleFonts.interTight(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleSmall
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleSmall
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleSmall
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleSmall
                                             .fontStyle,
                                       ),
                                 ),

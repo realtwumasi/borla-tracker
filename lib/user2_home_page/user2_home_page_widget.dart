@@ -1,8 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/components/user2_nav_widget.dart';
 import '/components/user2_request_card_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:flutter/material.dart';
@@ -130,6 +130,46 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                             ),
                           ),
                         ),
+                        Builder(
+                          builder: (context) => Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 20.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          FocusScope.of(dialogContext)
+                                              .unfocus();
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                        },
+                                        child: User2NavWidget(),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Icon(
+                                Icons.notes_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 30.0,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -197,28 +237,28 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 0.0, 12.0),
                                   child: Text(
-                                    'Recently Requests',
+                                    ' Requests',
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                        .titleSmall
                                         .override(
-                                          font: GoogleFonts.inter(
+                                          font: GoogleFonts.interTight(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .titleSmall
                                                     .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .titleSmall
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleSmall
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleSmall
                                                   .fontStyle,
                                         ),
                                   ),
@@ -313,103 +353,42 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                         alignment:
                                                             AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: Container(
-                                                          width: 200.0,
-                                                          child: Stack(
-                                                            children: [
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        0.0,
-                                                                        0.0),
+                                                        child: Stack(
+                                                          children: [
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      0.0, 0.0),
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          8.0),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          18.0),
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          18.0),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          8.0),
+                                                                ),
                                                                 child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                  child: Image
-                                                                      .asset(
-                                                                    'assets/images/aboboyaa_1.jpeg',
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    alignment:
-                                                                        Alignment(
-                                                                            0.0,
-                                                                            -1.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        1.0,
-                                                                        -1.0),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                                    Image.asset(
+                                                                  'assets/images/user.png',
+                                                                  fit: BoxFit
+                                                                      .fill,
+                                                                  alignment:
+                                                                      Alignment(
                                                                           0.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                    child:
-                                                                        BackdropFilter(
-                                                                      filter: ImageFilter
-                                                                          .blur(
-                                                                        sigmaX:
-                                                                            5.0,
-                                                                        sigmaY:
-                                                                            2.0,
-                                                                      ),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.min,
-                                                                        children: [
-                                                                          Container(
-                                                                            height:
-                                                                                32.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).accent4,
-                                                                              borderRadius: BorderRadius.circular(12.0),
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).alternate,
-                                                                                width: 2.0,
-                                                                              ),
-                                                                            ),
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                                              child: Text(
-                                                                                'Available',
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.inter(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
+                                                                          -1.0),
                                                                 ),
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ),
@@ -426,28 +405,28 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleLarge
+                                                                .headlineSmall
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .interTight(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .titleLarge
+                                                                        .headlineSmall
                                                                         .fontWeight,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .titleLarge
+                                                                        .headlineSmall
                                                                         .fontStyle,
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge
+                                                                      .headlineSmall
                                                                       .fontWeight,
                                                                   fontStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge
+                                                                      .headlineSmall
                                                                       .fontStyle,
                                                                 ),
                                                       ),

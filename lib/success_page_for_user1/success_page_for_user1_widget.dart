@@ -1,5 +1,4 @@
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -193,32 +192,6 @@ class _SuccessPageForUser1WidgetState extends State<SuccessPageForUser1Widget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 16.0, 8.0),
-              child: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).alternate,
-                borderRadius: 12.0,
-                borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                icon: Icon(
-                  Icons.close_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 24.0,
-                ),
-                onPressed: () {
-                  print('IconButton pressed ...');
-                },
-              ),
-            ),
-          ],
-          centerTitle: false,
-          elevation: 0.0,
-        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -307,7 +280,7 @@ class _SuccessPageForUser1WidgetState extends State<SuccessPageForUser1Widget>
                             Align(
                               alignment: AlignmentDirectional(0.0, -1.0),
                               child: Text(
-                                'Congrats!',
+                                'Details Sent!',
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(

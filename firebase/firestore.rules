@@ -16,15 +16,10 @@ service cloud.firestore {
     }
 
     match /user1/{parent}/eco_warrior/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
     }
-
-    match /{path=**}/eco_warrior/{document} {
-      allow read: if true;
-    }
-
   }
 }

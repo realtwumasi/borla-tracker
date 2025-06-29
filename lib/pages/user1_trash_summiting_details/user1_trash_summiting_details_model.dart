@@ -18,19 +18,9 @@ class User1TrashSummitingDetailsModel
   FFUploadedFile uploadedLocalFile_uploadData61p =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  // State field(s) for PlacePicker widget.
-  FFPlace placePickerValue = FFPlace();
-  // State field(s) for LocationField widget.
-  FocusNode? locationFieldFocusNode;
-  TextEditingController? locationFieldTextController;
-  String? Function(BuildContext, String?)? locationFieldTextControllerValidator;
-
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    locationFieldFocusNode?.dispose();
-    locationFieldTextController?.dispose();
-  }
+  void dispose() {}
 }

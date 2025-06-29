@@ -1,5 +1,7 @@
+import '/components/user1_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -106,6 +108,63 @@ class _TaskPendingCompletedUser1WidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          automaticallyImplyLeading: false,
+          leading: Builder(
+            builder: (context) => FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.notes_sharp,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return Dialog(
+                      elevation: 0,
+                      insetPadding: EdgeInsets.zero,
+                      backgroundColor: Colors.transparent,
+                      alignment: AlignmentDirectional(0.0, 0.0)
+                          .resolve(Directionality.of(context)),
+                      child: GestureDetector(
+                        onTap: () {
+                          FocusScope.of(dialogContext).unfocus();
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        child: User1NavWidget(),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+          title: Text(
+            'Recent Activities',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  font: GoogleFonts.interTight(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
+                  letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: SafeArea(
           top: true,
           child: Column(

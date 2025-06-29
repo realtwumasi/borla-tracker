@@ -7,7 +7,6 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
-import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -79,13 +78,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : IndexpageWidget(),
+          appStateNotifier.loggedIn ? User1HomepageWidget() : IndexpageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : IndexpageWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? User1HomepageWidget()
+              : IndexpageWidget(),
         ),
         FFRoute(
           name: IndexpageWidget.routeName,
@@ -105,9 +105,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: User1HomepageWidget.routeName,
           path: User1HomepageWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'user1_homepage')
-              : User1HomepageWidget(),
+          builder: (context, params) => User1HomepageWidget(),
         ),
         FFRoute(
           name: ProfileForUser1Widget.routeName,
@@ -137,16 +135,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: TaskPendingCompletedUser1Widget.routeName,
           path: TaskPendingCompletedUser1Widget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'task_pending_completed_user1')
-              : TaskPendingCompletedUser1Widget(),
+          builder: (context, params) => TaskPendingCompletedUser1Widget(),
         ),
         FFRoute(
           name: User2HomePageWidget.routeName,
           path: User2HomePageWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'user2_homePage')
-              : User2HomePageWidget(),
+          builder: (context, params) => User2HomePageWidget(),
+        ),
+        FFRoute(
+          name: GooglemapsWidget.routeName,
+          path: GooglemapsWidget.routePath,
+          builder: (context, params) => GooglemapsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -18,7 +18,7 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   String? Function(BuildContext, String?)? firstNameTextControllerValidator;
   String? _firstNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter the patients full name.';
+      return 'Please enter your First name';
     }
 
     return null;
@@ -30,7 +30,7 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   String? Function(BuildContext, String?)? lastNameTextControllerValidator;
   String? _lastNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter an age for the patient.';
+      return 'Please enter your Last Name';
     }
 
     return null;
@@ -40,10 +40,27 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   FocusNode? locationFocusNode;
   TextEditingController? locationTextController;
   String? Function(BuildContext, String?)? locationTextControllerValidator;
+  String? _locationTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Location is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for phoneNumber widget.
   FocusNode? phoneNumberFocusNode;
   TextEditingController? phoneNumberTextController;
   String? Function(BuildContext, String?)? phoneNumberTextControllerValidator;
+  String? _phoneNumberTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for gender widget.
   FormFieldController<List<String>>? genderValueController;
   String? get genderValue => genderValueController?.value?.firstOrNull;
@@ -56,6 +73,8 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   void initState(BuildContext context) {
     firstNameTextControllerValidator = _firstNameTextControllerValidator;
     lastNameTextControllerValidator = _lastNameTextControllerValidator;
+    locationTextControllerValidator = _locationTextControllerValidator;
+    phoneNumberTextControllerValidator = _phoneNumberTextControllerValidator;
   }
 
   @override

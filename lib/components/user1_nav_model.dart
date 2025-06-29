@@ -1,9 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'user2_request_card_view_widget.dart' show User2RequestCardViewWidget;
+import 'user1_nav_widget.dart' show User1NavWidget;
 import 'package:flutter/material.dart';
 
-class User2RequestCardViewModel
-    extends FlutterFlowModel<User2RequestCardViewWidget> {
+class User1NavModel extends FlutterFlowModel<User1NavWidget> {
   ///  Local state fields for this component.
 
   List<double> trackingCoordinates = [];
