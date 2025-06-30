@@ -1,8 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'user1_ecowarrior_card_view_model.dart';
@@ -17,8 +19,10 @@ class User1EcowarriorCardViewWidget extends StatefulWidget {
 }
 
 class _User1EcowarriorCardViewWidgetState
-    extends State<User1EcowarriorCardViewWidget> {
+    extends State<User1EcowarriorCardViewWidget> with TickerProviderStateMixin {
   late User1EcowarriorCardViewModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -30,6 +34,21 @@ class _User1EcowarriorCardViewWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => User1EcowarriorCardViewModel());
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.elasticOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.105,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -76,26 +95,26 @@ class _User1EcowarriorCardViewWidgetState
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(100.0),
-                      child: Image.asset(
-                        'assets/images/aboboyaa_1.jpeg',
-                        width: double.infinity,
-                        height: 200.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 5.0),
-                        child: Text(
-                          'Akwasi Adom',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineSmall
-                              .override(
-                                font: GoogleFonts.interTight(
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 5.0),
+                        child: AuthUserStreamWidget(
+                          builder: (context) => Text(
+                            valueOrDefault(currentUserDocument?.nickName, ''),
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  font: GoogleFonts.interTight(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontStyle,
+                                  ),
+                                  letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .headlineSmall
                                       .fontWeight,
@@ -103,14 +122,7 @@ class _User1EcowarriorCardViewWidgetState
                                       .headlineSmall
                                       .fontStyle,
                                 ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .fontStyle,
-                              ),
+                          ),
                         ),
                       ),
                     ),
@@ -126,7 +138,9 @@ class _User1EcowarriorCardViewWidgetState
                               style: TextStyle(),
                             ),
                             TextSpan(
-                              text: 'Active',
+                              text: valueOrDefault<bool>(
+                                      currentUserDocument?.statusUser2, false)
+                                  .toString(),
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primary,
                               ),
@@ -165,7 +179,8 @@ class _User1EcowarriorCardViewWidgetState
                               style: TextStyle(),
                             ),
                             TextSpan(
-                              text: 'Aboboyaa',
+                              text: valueOrDefault(
+                                  currentUserDocument?.vehicleUser2, ''),
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primary,
                               ),
@@ -204,7 +219,8 @@ class _User1EcowarriorCardViewWidgetState
                               style: TextStyle(),
                             ),
                             TextSpan(
-                              text: 'Weekdays',
+                              text: valueOrDefault(
+                                  currentUserDocument?.workingDaysUser2, ''),
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primary,
                               ),
@@ -243,7 +259,46 @@ class _User1EcowarriorCardViewWidgetState
                               style: TextStyle(),
                             ),
                             TextSpan(
-                              text: '0987654321',
+                              text: currentPhoneNumber,
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primary,
+                              ),
+                            )
+                          ],
+                          style:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 4.0, 0.0, 0.0),
+                      child: RichText(
+                        textScaler: MediaQuery.of(context).textScaler,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'uid: ',
+                              style: TextStyle(),
+                            ),
+                            TextSpan(
+                              text: currentUserUid,
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primary,
                               ),
@@ -337,7 +392,7 @@ class _User1EcowarriorCardViewWidgetState
               Align(
                 alignment: AlignmentDirectional(0.0, 0.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -400,7 +455,7 @@ class _User1EcowarriorCardViewWidgetState
             ],
           ),
         ),
-      ),
+      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
     );
   }
 }

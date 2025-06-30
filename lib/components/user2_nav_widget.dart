@@ -1,7 +1,9 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'user2_nav_model.dart';
 export 'user2_nav_model.dart';
@@ -13,8 +15,11 @@ class User2NavWidget extends StatefulWidget {
   State<User2NavWidget> createState() => _User2NavWidgetState();
 }
 
-class _User2NavWidgetState extends State<User2NavWidget> {
+class _User2NavWidgetState extends State<User2NavWidget>
+    with TickerProviderStateMixin {
   late User2NavModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -26,6 +31,21 @@ class _User2NavWidgetState extends State<User2NavWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => User2NavModel());
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeIn,
+            delay: 380.0.ms,
+            duration: 600.0.ms,
+            begin: 0.09,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -269,7 +289,7 @@ class _User2NavWidgetState extends State<User2NavWidget> {
             ],
           ),
         ),
-      ),
+      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
     );
   }
 }

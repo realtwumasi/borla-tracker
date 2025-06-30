@@ -1,9 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'user2_request_card_view_model.dart';
@@ -17,9 +18,11 @@ class User2RequestCardViewWidget extends StatefulWidget {
       _User2RequestCardViewWidgetState();
 }
 
-class _User2RequestCardViewWidgetState
-    extends State<User2RequestCardViewWidget> {
+class _User2RequestCardViewWidgetState extends State<User2RequestCardViewWidget>
+    with TickerProviderStateMixin {
   late User2RequestCardViewModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -31,6 +34,33 @@ class _User2RequestCardViewWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => User2RequestCardViewModel());
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeIn,
+            delay: 260.0.ms,
+            duration: 600.0.ms,
+            begin: 0.045,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'imageOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeIn,
+            delay: 220.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -77,20 +107,11 @@ class _User2RequestCardViewWidgetState
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(100.0),
-                      child: Image.asset(
-                        'assets/images/user.png',
-                        width: double.infinity,
-                        height: 200.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
                     Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 8.0),
                         child: AuthUserStreamWidget(
                           builder: (context) => Text(
                             valueOrDefault(currentUserDocument?.firstName, ''),
@@ -165,7 +186,7 @@ class _User2RequestCardViewWidgetState
                               style: TextStyle(),
                             ),
                             TextSpan(
-                              text: '0987654321',
+                              text: currentPhoneNumber,
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primary,
                               ),
@@ -220,48 +241,17 @@ class _User2RequestCardViewWidgetState
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 20.0, 0.0, 20.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                child: FlutterFlowExpandedImageView(
-                                  image: Image.asset(
-                                    'assets/images/trash.jpg',
-                                    fit: BoxFit.contain,
-                                  ),
-                                  allowRotation: false,
-                                  tag: 'imageTag',
-                                  useHeroAnimation: true,
-                                ),
-                              ),
-                            );
-                          },
-                          child: Hero(
-                            tag: 'imageTag',
-                            transitionOnUserGestures: true,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/trash.jpg',
-                                width: 200.0,
-                                height: 200.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+                    AuthUserStreamWidget(
+                      builder: (context) => ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          valueOrDefault(currentUserDocument?.profileImg, ''),
+                          width: 200.0,
+                          height: 200.0,
+                          fit: BoxFit.cover,
                         ),
-                      ),
+                      ).animateOnPageLoad(
+                          animationsMap['imageOnPageLoadAnimation']!),
                     ),
                   ],
                 ),
@@ -276,7 +266,16 @@ class _User2RequestCardViewWidgetState
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      context.pushNamed(GooglemapsWidget.routeName);
+                      context.pushNamed(
+                        GooglemapsWidget.routeName,
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 200),
+                          ),
+                        },
+                      );
                     },
                     child: Container(
                       width: 200.0,
@@ -394,7 +393,7 @@ class _User2RequestCardViewWidgetState
             ],
           ),
         ),
-      ),
+      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
     );
   }
 }

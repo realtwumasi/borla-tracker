@@ -19,3 +19,9 @@ export '/pages/task_pending_completed_user1/task_pending_completed_user1_widget.
     show TaskPendingCompletedUser1Widget;
 export '/user2_home_page/user2_home_page_widget.dart' show User2HomePageWidget;
 export '/googlemaps/googlemaps_widget.dart' show GooglemapsWidget;
+export '/sign_up_completion_user2/sign_up_completion_user2_widget.dart'
+    show SignUpCompletionUser2Widget;
+export '/edit_profile_img/edit_profile_img_widget.dart'
+    show EditProfileImgWidget;
+export '/edit_profile_img_editing/edit_profile_img_editing_widget.dart'
+    show EditProfileImgEditingWidget;

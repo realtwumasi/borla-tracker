@@ -65,15 +65,45 @@ class User1Record extends FirestoreRecord {
   String get gender => _gender ?? '';
   bool hasGender() => _gender != null;
 
-  // "is_Personal" field.
-  bool? _isPersonal;
-  bool get isPersonal => _isPersonal ?? false;
-  bool hasIsPersonal() => _isPersonal != null;
-
   // "accountType" field.
   String? _accountType;
   String get accountType => _accountType ?? '';
   bool hasAccountType() => _accountType != null;
+
+  // "nickName" field.
+  String? _nickName;
+  String get nickName => _nickName ?? '';
+  bool hasNickName() => _nickName != null;
+
+  // "min_amount_user2" field.
+  double? _minAmountUser2;
+  double get minAmountUser2 => _minAmountUser2 ?? 0.0;
+  bool hasMinAmountUser2() => _minAmountUser2 != null;
+
+  // "status_user2" field.
+  bool? _statusUser2;
+  bool get statusUser2 => _statusUser2 ?? false;
+  bool hasStatusUser2() => _statusUser2 != null;
+
+  // "vehicle_user2" field.
+  String? _vehicleUser2;
+  String get vehicleUser2 => _vehicleUser2 ?? '';
+  bool hasVehicleUser2() => _vehicleUser2 != null;
+
+  // "working_days_user2" field.
+  String? _workingDaysUser2;
+  String get workingDaysUser2 => _workingDaysUser2 ?? '';
+  bool hasWorkingDaysUser2() => _workingDaysUser2 != null;
+
+  // "trash_img_user1" field.
+  String? _trashImgUser1;
+  String get trashImgUser1 => _trashImgUser1 ?? '';
+  bool hasTrashImgUser1() => _trashImgUser1 != null;
+
+  // "profile_img" field.
+  String? _profileImg;
+  String get profileImg => _profileImg ?? '';
+  bool hasProfileImg() => _profileImg != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -86,8 +116,14 @@ class User1Record extends FirestoreRecord {
     _lastName = snapshotData['lastName'] as String?;
     _location = snapshotData['location'] as String?;
     _gender = snapshotData['gender'] as String?;
-    _isPersonal = snapshotData['is_Personal'] as bool?;
     _accountType = snapshotData['accountType'] as String?;
+    _nickName = snapshotData['nickName'] as String?;
+    _minAmountUser2 = castToType<double>(snapshotData['min_amount_user2']);
+    _statusUser2 = snapshotData['status_user2'] as bool?;
+    _vehicleUser2 = snapshotData['vehicle_user2'] as String?;
+    _workingDaysUser2 = snapshotData['working_days_user2'] as String?;
+    _trashImgUser1 = snapshotData['trash_img_user1'] as String?;
+    _profileImg = snapshotData['profile_img'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -134,8 +170,14 @@ Map<String, dynamic> createUser1RecordData({
   String? lastName,
   String? location,
   String? gender,
-  bool? isPersonal,
   String? accountType,
+  String? nickName,
+  double? minAmountUser2,
+  bool? statusUser2,
+  String? vehicleUser2,
+  String? workingDaysUser2,
+  String? trashImgUser1,
+  String? profileImg,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -149,8 +191,14 @@ Map<String, dynamic> createUser1RecordData({
       'lastName': lastName,
       'location': location,
       'gender': gender,
-      'is_Personal': isPersonal,
       'accountType': accountType,
+      'nickName': nickName,
+      'min_amount_user2': minAmountUser2,
+      'status_user2': statusUser2,
+      'vehicle_user2': vehicleUser2,
+      'working_days_user2': workingDaysUser2,
+      'trash_img_user1': trashImgUser1,
+      'profile_img': profileImg,
     }.withoutNulls,
   );
 
@@ -172,8 +220,14 @@ class User1RecordDocumentEquality implements Equality<User1Record> {
         e1?.lastName == e2?.lastName &&
         e1?.location == e2?.location &&
         e1?.gender == e2?.gender &&
-        e1?.isPersonal == e2?.isPersonal &&
-        e1?.accountType == e2?.accountType;
+        e1?.accountType == e2?.accountType &&
+        e1?.nickName == e2?.nickName &&
+        e1?.minAmountUser2 == e2?.minAmountUser2 &&
+        e1?.statusUser2 == e2?.statusUser2 &&
+        e1?.vehicleUser2 == e2?.vehicleUser2 &&
+        e1?.workingDaysUser2 == e2?.workingDaysUser2 &&
+        e1?.trashImgUser1 == e2?.trashImgUser1 &&
+        e1?.profileImg == e2?.profileImg;
   }
 
   @override
@@ -188,8 +242,14 @@ class User1RecordDocumentEquality implements Equality<User1Record> {
         e?.lastName,
         e?.location,
         e?.gender,
-        e?.isPersonal,
-        e?.accountType
+        e?.accountType,
+        e?.nickName,
+        e?.minAmountUser2,
+        e?.statusUser2,
+        e?.vehicleUser2,
+        e?.workingDaysUser2,
+        e?.trashImgUser1,
+        e?.profileImg
       ]);
 
   @override

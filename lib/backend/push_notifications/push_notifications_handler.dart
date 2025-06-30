@@ -126,6 +126,9 @@ final parametersBuilderMap =
   'task_pending_completed_user1': ParameterData.none(),
   'user2_homePage': ParameterData.none(),
   'googlemaps': ParameterData.none(),
+  'SignUp_completion_user2': ParameterData.none(),
+  'edit_profile_img': ParameterData.none(),
+  'edit_profile_img_editing': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

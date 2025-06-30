@@ -78,14 +78,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? User1HomepageWidget() : IndexpageWidget(),
+          appStateNotifier.loggedIn ? Auth3Widget() : IndexpageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? User1HomepageWidget()
-              : IndexpageWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? Auth3Widget() : IndexpageWidget(),
         ),
         FFRoute(
           name: IndexpageWidget.routeName,
@@ -146,6 +145,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: GooglemapsWidget.routeName,
           path: GooglemapsWidget.routePath,
           builder: (context, params) => GooglemapsWidget(),
+        ),
+        FFRoute(
+          name: SignUpCompletionUser2Widget.routeName,
+          path: SignUpCompletionUser2Widget.routePath,
+          builder: (context, params) => SignUpCompletionUser2Widget(),
+        ),
+        FFRoute(
+          name: EditProfileImgWidget.routeName,
+          path: EditProfileImgWidget.routePath,
+          builder: (context, params) => EditProfileImgWidget(),
+        ),
+        FFRoute(
+          name: EditProfileImgEditingWidget.routeName,
+          path: EditProfileImgEditingWidget.routePath,
+          builder: (context, params) => EditProfileImgEditingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

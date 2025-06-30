@@ -14,9 +14,14 @@ class User1TrashSummitingDetailsModel
 
   ///  State fields for stateful widgets in this page.
 
-  bool isDataUploading_uploadData61p = false;
-  FFUploadedFile uploadedLocalFile_uploadData61p =
+  bool isDataUploading_uploadedTrashImgLocalState = false;
+  FFUploadedFile uploadedLocalFile_uploadedTrashImgLocalState =
       FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  bool isDataUploading_uploadedTrashImgFireStore = false;
+  FFUploadedFile uploadedLocalFile_uploadedTrashImgFireStore =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl_uploadedTrashImgFireStore = '';
 
   @override
   void initState(BuildContext context) {}

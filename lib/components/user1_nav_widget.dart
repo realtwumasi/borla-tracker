@@ -1,7 +1,9 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'user1_nav_model.dart';
 export 'user1_nav_model.dart';
@@ -13,8 +15,11 @@ class User1NavWidget extends StatefulWidget {
   State<User1NavWidget> createState() => _User1NavWidgetState();
 }
 
-class _User1NavWidgetState extends State<User1NavWidget> {
+class _User1NavWidgetState extends State<User1NavWidget>
+    with TickerProviderStateMixin {
   late User1NavModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -26,6 +31,21 @@ class _User1NavWidgetState extends State<User1NavWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => User1NavModel());
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeIn,
+            delay: 260.0.ms,
+            duration: 600.0.ms,
+            begin: 0.085,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -253,7 +273,7 @@ class _User1NavWidgetState extends State<User1NavWidget> {
             ],
           ),
         ),
-      ),
+      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
     );
   }
 }

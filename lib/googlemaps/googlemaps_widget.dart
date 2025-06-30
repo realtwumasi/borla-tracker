@@ -21,15 +21,12 @@ class _GooglemapsWidgetState extends State<GooglemapsWidget> {
   late GooglemapsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => GooglemapsModel());
 
-    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
-        .then((loc) => safeSetState(() => currentUserLocationValue = loc));
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -42,23 +39,6 @@ class _GooglemapsWidgetState extends State<GooglemapsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (currentUserLocationValue == null) {
-      return Container(
-        color: FlutterFlowTheme.of(context).primaryBackground,
-        child: Center(
-          child: SizedBox(
-            width: 50.0,
-            height: 50.0,
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                FlutterFlowTheme.of(context).primary,
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -86,7 +66,7 @@ class _GooglemapsWidgetState extends State<GooglemapsWidget> {
             },
           ),
           title: Text(
-            'Tracking...',
+            'Tracking',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   font: GoogleFonts.interTight(
                     fontWeight:
@@ -113,8 +93,8 @@ class _GooglemapsWidgetState extends State<GooglemapsWidget> {
             controller: _model.googleMapsController,
             onCameraIdle: (latLng) => _model.googleMapsCenter = latLng,
             initialLocation: _model.googleMapsCenter ??=
-                currentUserLocationValue!,
-            markerColor: GoogleMarkerColor.red,
+                LatLng(13.106061, -59.613158),
+            markerColor: GoogleMarkerColor.violet,
             mapType: MapType.normal,
             style: GoogleMapStyle.standard,
             initialZoom: 14.0,
@@ -124,7 +104,7 @@ class _GooglemapsWidgetState extends State<GooglemapsWidget> {
             showLocation: true,
             showCompass: false,
             showMapToolbar: true,
-            showTraffic: false,
+            showTraffic: true,
             centerMapOnMarkerTap: true,
             mapTakesGesturePreference: false,
           ),

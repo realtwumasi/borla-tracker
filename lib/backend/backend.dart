@@ -6,8 +6,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/util/firestore_util.dart';
 
 import 'schema/user1_record.dart';
-import 'schema/user2_record.dart';
-import 'schema/eco_warrior_record.dart';
+import 'schema/waste_management_account_record.dart';
+import 'schema/personal_account_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -17,8 +17,8 @@ export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
 export 'schema/user1_record.dart';
-export 'schema/user2_record.dart';
-export 'schema/eco_warrior_record.dart';
+export 'schema/waste_management_account_record.dart';
+export 'schema/personal_account_record.dart';
 
 /// Functions to query User1Records (as a Stream and as a Future).
 Future<int> queryUser1RecordCount({
@@ -57,78 +57,76 @@ Future<List<User1Record>> queryUser1RecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query User2Records (as a Stream and as a Future).
-Future<int> queryUser2RecordCount({
+/// Functions to query WasteManagementAccountRecords (as a Stream and as a Future).
+Future<int> queryWasteManagementAccountRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      User2Record.collection,
+      WasteManagementAccountRecord.collection,
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<User2Record>> queryUser2Record({
+Stream<List<WasteManagementAccountRecord>> queryWasteManagementAccountRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      User2Record.collection,
-      User2Record.fromSnapshot,
+      WasteManagementAccountRecord.collection,
+      WasteManagementAccountRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<User2Record>> queryUser2RecordOnce({
+Future<List<WasteManagementAccountRecord>>
+    queryWasteManagementAccountRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
-    queryCollectionOnce(
-      User2Record.collection,
-      User2Record.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
+        queryCollectionOnce(
+          WasteManagementAccountRecord.collection,
+          WasteManagementAccountRecord.fromSnapshot,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
 
-/// Functions to query EcoWarriorRecords (as a Stream and as a Future).
-Future<int> queryEcoWarriorRecordCount({
-  DocumentReference? parent,
+/// Functions to query PersonalAccountRecords (as a Stream and as a Future).
+Future<int> queryPersonalAccountRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      EcoWarriorRecord.collection(parent),
+      PersonalAccountRecord.collection,
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<EcoWarriorRecord>> queryEcoWarriorRecord({
-  DocumentReference? parent,
+Stream<List<PersonalAccountRecord>> queryPersonalAccountRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      EcoWarriorRecord.collection(parent),
-      EcoWarriorRecord.fromSnapshot,
+      PersonalAccountRecord.collection,
+      PersonalAccountRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<EcoWarriorRecord>> queryEcoWarriorRecordOnce({
-  DocumentReference? parent,
+Future<List<PersonalAccountRecord>> queryPersonalAccountRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      EcoWarriorRecord.collection(parent),
-      EcoWarriorRecord.fromSnapshot,
+      PersonalAccountRecord.collection,
+      PersonalAccountRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

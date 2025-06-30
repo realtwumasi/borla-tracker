@@ -1,3 +1,4 @@
+import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -190,7 +191,8 @@ class _User1TrashSummitingDetailsWidgetState
                                         validateFileFormat(
                                             m.storagePath, context))) {
                                   safeSetState(() => _model
-                                      .isDataUploading_uploadData61p = true);
+                                          .isDataUploading_uploadedTrashImgLocalState =
+                                      true);
                                   var selectedUploadedFiles =
                                       <FFUploadedFile>[];
 
@@ -206,13 +208,13 @@ class _User1TrashSummitingDetailsWidgetState
                                             ))
                                         .toList();
                                   } finally {
-                                    _model.isDataUploading_uploadData61p =
+                                    _model.isDataUploading_uploadedTrashImgLocalState =
                                         false;
                                   }
                                   if (selectedUploadedFiles.length ==
                                       selectedMedia.length) {
                                     safeSetState(() {
-                                      _model.uploadedLocalFile_uploadData61p =
+                                      _model.uploadedLocalFile_uploadedTrashImgLocalState =
                                           selectedUploadedFiles.first;
                                     });
                                   } else {
@@ -220,8 +222,6 @@ class _User1TrashSummitingDetailsWidgetState
                                     return;
                                   }
                                 }
-
-                                await launchURL(_model.uploadedImageUrl!);
                               },
                               child: Icon(
                                 Icons.add_a_photo_rounded,
@@ -287,7 +287,7 @@ class _User1TrashSummitingDetailsWidgetState
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.memory(
-                                  _model.uploadedLocalFile_uploadData61p
+                                  _model.uploadedLocalFile_uploadedTrashImgLocalState
                                           .bytes ??
                                       Uint8List.fromList([]),
                                   width: 300.0,
@@ -320,6 +320,54 @@ class _User1TrashSummitingDetailsWidgetState
                         EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        {
+                          safeSetState(() =>
+                              _model.isDataUploading_uploadedTrashImgFireStore =
+                                  true);
+                          var selectedUploadedFiles = <FFUploadedFile>[];
+                          var selectedMedia = <SelectedFile>[];
+                          var downloadUrls = <String>[];
+                          try {
+                            selectedUploadedFiles = _model
+                                    .uploadedLocalFile_uploadedTrashImgLocalState
+                                    .bytes!
+                                    .isNotEmpty
+                                ? [
+                                    _model
+                                        .uploadedLocalFile_uploadedTrashImgLocalState
+                                  ]
+                                : <FFUploadedFile>[];
+                            selectedMedia = selectedFilesFromUploadedFiles(
+                              selectedUploadedFiles,
+                            );
+                            downloadUrls = (await Future.wait(
+                              selectedMedia.map(
+                                (m) async =>
+                                    await uploadData(m.storagePath, m.bytes),
+                              ),
+                            ))
+                                .where((u) => u != null)
+                                .map((u) => u!)
+                                .toList();
+                          } finally {
+                            _model.isDataUploading_uploadedTrashImgFireStore =
+                                false;
+                          }
+                          if (selectedUploadedFiles.length ==
+                                  selectedMedia.length &&
+                              downloadUrls.length == selectedMedia.length) {
+                            safeSetState(() {
+                              _model.uploadedLocalFile_uploadedTrashImgFireStore =
+                                  selectedUploadedFiles.first;
+                              _model.uploadedFileUrl_uploadedTrashImgFireStore =
+                                  downloadUrls.first;
+                            });
+                          } else {
+                            safeSetState(() {});
+                            return;
+                          }
+                        }
+
                         context.pushNamed(SuccessPageForUser1Widget.routeName);
                       },
                       text: 'Done',

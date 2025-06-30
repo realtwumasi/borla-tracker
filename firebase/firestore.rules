@@ -8,18 +8,18 @@ service cloud.firestore {
       allow delete: if request.auth.uid == document;
     }
 
-    match /user2/{document} {
+    match /waste_management_account/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if true;
       allow delete: if true;
     }
 
-    match /user1/{parent}/eco_warrior/{document} {
-      allow create: if request.auth.uid == parent;
-      allow read: if request.auth.uid == parent;
-      allow write: if request.auth.uid == parent;
-      allow delete: if request.auth.uid == parent;
+    match /personal_account/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
     }
   }
 }
