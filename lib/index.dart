@@ -25,3 +25,5 @@ export '/edit_profile_img/edit_profile_img_widget.dart'
     show EditProfileImgWidget;
 export '/edit_profile_img_editing/edit_profile_img_editing_widget.dart'
     show EditProfileImgEditingWidget;
+export '/request_personal_details/request_personal_details_widget.dart'
+    show RequestPersonalDetailsWidget;

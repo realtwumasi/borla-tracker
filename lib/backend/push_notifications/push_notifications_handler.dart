@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'serialization_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -122,13 +123,22 @@ final parametersBuilderMap =
   'Profile_for_user2': ParameterData.none(),
   'Success_page_for_user1': ParameterData.none(),
   'pending_completed_page_user2': ParameterData.none(),
-  'user1_trash_summiting_details': ParameterData.none(),
+  'user1_trash_summiting_details': (data) async => ParameterData(
+        allParams: {
+          'user1Uid': getParameter<String>(data, 'user1Uid'),
+        },
+      ),
   'task_pending_completed_user1': ParameterData.none(),
   'user2_homePage': ParameterData.none(),
   'googlemaps': ParameterData.none(),
   'SignUp_completion_user2': ParameterData.none(),
   'edit_profile_img': ParameterData.none(),
   'edit_profile_img_editing': ParameterData.none(),
+  'request_personal_details': (data) async => ParameterData(
+        allParams: {
+          'user1Uid': getParameter<String>(data, 'user1Uid'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

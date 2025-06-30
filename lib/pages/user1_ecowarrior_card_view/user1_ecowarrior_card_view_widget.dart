@@ -339,7 +339,14 @@ class _User1EcowarriorCardViewWidgetState
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.pushNamed(
-                          User1TrashSummitingDetailsWidget.routeName);
+                        User1TrashSummitingDetailsWidget.routeName,
+                        queryParameters: {
+                          'user1Uid': serializeParam(
+                            currentUserUid,
+                            ParamType.String,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                     child: Container(
                       width: 200.0,

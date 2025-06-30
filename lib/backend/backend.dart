@@ -8,6 +8,7 @@ import 'schema/util/firestore_util.dart';
 import 'schema/user1_record.dart';
 import 'schema/waste_management_account_record.dart';
 import 'schema/personal_account_record.dart';
+import 'schema/request_from_personal_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -19,6 +20,7 @@ export 'schema/util/schema_util.dart';
 export 'schema/user1_record.dart';
 export 'schema/waste_management_account_record.dart';
 export 'schema/personal_account_record.dart';
+export 'schema/request_from_personal_record.dart';
 
 /// Functions to query User1Records (as a Stream and as a Future).
 Future<int> queryUser1RecordCount({
@@ -127,6 +129,43 @@ Future<List<PersonalAccountRecord>> queryPersonalAccountRecordOnce({
     queryCollectionOnce(
       PersonalAccountRecord.collection,
       PersonalAccountRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query RequestFromPersonalRecords (as a Stream and as a Future).
+Future<int> queryRequestFromPersonalRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      RequestFromPersonalRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<RequestFromPersonalRecord>> queryRequestFromPersonalRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RequestFromPersonalRecord.collection,
+      RequestFromPersonalRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RequestFromPersonalRecord>> queryRequestFromPersonalRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RequestFromPersonalRecord.collection,
+      RequestFromPersonalRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

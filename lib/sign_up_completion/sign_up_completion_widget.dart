@@ -1150,8 +1150,8 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                                   firstName:
                                       _model.firstNameTextController.text,
                                   lastName: _model.lastNameTextController.text,
-                                  accountType:
-                                      _model.radioButtonAccountTypeValue,
+                                  accountType: valueOrDefault(
+                                      currentUserDocument?.accountType, ''),
                                   location: _model.locationTextController.text,
                                   gender: _model.genderValue,
                                 ));

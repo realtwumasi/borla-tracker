@@ -764,6 +764,18 @@ class _SignUpCompletionUser2WidgetState
                             return;
                           }
 
+                          await currentUserReference!
+                              .update(createUser1RecordData(
+                            firstName: _model.nickNameTextController.text,
+                            lastName: _model.minAmountTextController.text,
+                            phoneNumber: currentPhoneNumber,
+                            location: valueOrDefault(
+                                currentUserDocument?.location, ''),
+                            gender:
+                                valueOrDefault(currentUserDocument?.gender, ''),
+                            workingDaysUser2: _model.workingDaysValue,
+                          ));
+
                           await WasteManagementAccountRecord.collection
                               .doc('signUpCompletion_user2_contin')
                               .set(createWasteManagementAccountRecordData(

@@ -129,7 +129,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: User1TrashSummitingDetailsWidget.routeName,
           path: User1TrashSummitingDetailsWidget.routePath,
-          builder: (context, params) => User1TrashSummitingDetailsWidget(),
+          builder: (context, params) => User1TrashSummitingDetailsWidget(
+            user1Uid: params.getParam(
+              'user1Uid',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: TaskPendingCompletedUser1Widget.routeName,
@@ -160,6 +165,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: EditProfileImgEditingWidget.routeName,
           path: EditProfileImgEditingWidget.routePath,
           builder: (context, params) => EditProfileImgEditingWidget(),
+        ),
+        FFRoute(
+          name: RequestPersonalDetailsWidget.routeName,
+          path: RequestPersonalDetailsWidget.routePath,
+          builder: (context, params) => RequestPersonalDetailsWidget(
+            user1Uid: params.getParam(
+              'user1Uid',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
