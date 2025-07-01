@@ -166,53 +166,11 @@ class _User1EcowarriorCardViewWidgetState
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: 'Status: ',
-                                  style: TextStyle(),
-                                ),
-                                TextSpan(
-                                  text: videoWasteManagementAccountRecord!
-                                      .status
-                                      .toString(),
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                  ),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 4.0, 0.0, 0.0),
-                          child: RichText(
-                            textScaler: MediaQuery.of(context).textScaler,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
                                   text: 'Vehicle: ',
                                   style: TextStyle(),
                                 ),
                                 TextSpan(
-                                  text: videoWasteManagementAccountRecord
+                                  text: videoWasteManagementAccountRecord!
                                       .vehicleType,
                                   style: TextStyle(
                                     color: FlutterFlowTheme.of(context).primary,
@@ -296,46 +254,6 @@ class _User1EcowarriorCardViewWidgetState
                                 TextSpan(
                                   text: videoWasteManagementAccountRecord
                                       .phoneNumber,
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                  ),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 4.0, 0.0, 0.0),
-                          child: RichText(
-                            textScaler: MediaQuery.of(context).textScaler,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'uid: ',
-                                  style: TextStyle(),
-                                ),
-                                TextSpan(
-                                  text: videoWasteManagementAccountRecord.uid,
                                   style: TextStyle(
                                     color: FlutterFlowTheme.of(context).primary,
                                   ),

@@ -18,19 +18,7 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   String? Function(BuildContext, String?)? firstNameTextControllerValidator;
   String? _firstNameTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter your First name';
-    }
-
-    return null;
-  }
-
-  // State field(s) for lastName widget.
-  FocusNode? lastNameFocusNode;
-  TextEditingController? lastNameTextController;
-  String? Function(BuildContext, String?)? lastNameTextControllerValidator;
-  String? _lastNameTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter your Last Name';
+      return 'Please enter your Full name';
     }
 
     return null;
@@ -55,7 +43,11 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   String? _phoneNumberTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Phone Number';
+    }
+
+    if (val.length > 10) {
+      return 'Maximum 10 characters allowed, currently ${val.length}.';
     }
 
     return null;
@@ -72,7 +64,6 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   @override
   void initState(BuildContext context) {
     firstNameTextControllerValidator = _firstNameTextControllerValidator;
-    lastNameTextControllerValidator = _lastNameTextControllerValidator;
     locationTextControllerValidator = _locationTextControllerValidator;
     phoneNumberTextControllerValidator = _phoneNumberTextControllerValidator;
   }
@@ -81,9 +72,6 @@ class SignUpCompletionModel extends FlutterFlowModel<SignUpCompletionWidget> {
   void dispose() {
     firstNameFocusNode?.dispose();
     firstNameTextController?.dispose();
-
-    lastNameFocusNode?.dispose();
-    lastNameTextController?.dispose();
 
     locationFocusNode?.dispose();
     locationTextController?.dispose();

@@ -210,6 +210,47 @@ class _User1TrashSummitingDetailsWidgetState
                               width: 2.0,
                             ),
                           ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.memory(
+                                      _model.uploadedLocalFile_uploadedTrashImgLocalState
+                                              .bytes ??
+                                          Uint8List.fromList([]),
+                                      width: 300.0,
+                                      height: 300.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation1']!),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                        child: Container(
+                          width: double.infinity,
+                          constraints: BoxConstraints(
+                            maxWidth: 500.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(12.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 2.0,
+                            ),
+                          ),
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Row(
@@ -274,7 +315,7 @@ class _User1TrashSummitingDetailsWidgetState
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'Upload Image of Trash ',
+                                    'Click button to upload image of your trash',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -305,62 +346,7 @@ class _User1TrashSummitingDetailsWidgetState
                             ),
                           ),
                         ).animateOnPageLoad(
-                            animationsMap['containerOnPageLoadAnimation1']!),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          constraints: BoxConstraints(
-                            maxWidth: 500.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.memory(
-                                      _model.uploadedLocalFile_uploadedTrashImgLocalState
-                                              .bytes ??
-                                          Uint8List.fromList([]),
-                                      width: 300.0,
-                                      height: 300.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ).animateOnPageLoad(
                             animationsMap['containerOnPageLoadAnimation2']!),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                        child: Container(
-                          width: 500.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            border: Border.all(
-                              color: Color(0x00E0E3E7),
-                            ),
-                          ),
-                        ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(

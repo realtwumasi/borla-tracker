@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/user1_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -155,40 +154,10 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                             ),
                           ),
                         ),
-                        Builder(
-                          builder: (context) => InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        FocusScope.of(dialogContext).unfocus();
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-                                      },
-                                      child: User1NavWidget(),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            child: Icon(
-                              Icons.notes_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
-                            ),
-                          ),
+                        Icon(
+                          Icons.notes_outlined,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
                         ),
                       ],
                     ),
