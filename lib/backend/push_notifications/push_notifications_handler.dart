@@ -117,7 +117,11 @@ final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'indexpage': ParameterData.none(),
   'Auth3': ParameterData.none(),
-  'SignUp_completion': ParameterData.none(),
+  'SignUp_completion': (data) async => ParameterData(
+        allParams: {
+          'statusUser2': getParameter<String>(data, 'statusUser2'),
+        },
+      ),
   'user1_homepage': ParameterData.none(),
   'Profile_for_user1': ParameterData.none(),
   'Profile_for_user2': ParameterData.none(),
@@ -139,6 +143,7 @@ final parametersBuilderMap =
           'user1Uid': getParameter<String>(data, 'user1Uid'),
         },
       ),
+  'edit_profile_img_user2': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

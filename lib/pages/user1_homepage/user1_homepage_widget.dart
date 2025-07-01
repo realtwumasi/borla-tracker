@@ -283,14 +283,9 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 44.0),
-                                child: StreamBuilder<List<User1Record>>(
-                                  stream: queryUser1Record(
-                                    queryBuilder: (user1Record) =>
-                                        user1Record.where(
-                                      'accountType',
-                                      isEqualTo: 'Waste Management',
-                                    ),
-                                  ),
+                                child: StreamBuilder<
+                                    List<WasteManagementAccountRecord>>(
+                                  stream: queryWasteManagementAccountRecord(),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
                                     if (!snapshot.hasData) {
@@ -308,7 +303,8 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                         ),
                                       );
                                     }
-                                    List<User1Record> listViewUser1RecordList =
+                                    List<WasteManagementAccountRecord>
+                                        listViewWasteManagementAccountRecordList =
                                         snapshot.data!;
 
                                     return ListView.separated(
@@ -316,12 +312,14 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                       primary: false,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
-                                      itemCount: listViewUser1RecordList.length,
+                                      itemCount:
+                                          listViewWasteManagementAccountRecordList
+                                              .length,
                                       separatorBuilder: (_, __) =>
                                           SizedBox(height: 12.0),
                                       itemBuilder: (context, listViewIndex) {
-                                        final listViewUser1Record =
-                                            listViewUser1RecordList[
+                                        final listViewWasteManagementAccountRecord =
+                                            listViewWasteManagementAccountRecordList[
                                                 listViewIndex];
                                         return Builder(
                                           builder: (context) => Padding(
@@ -411,8 +409,9 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                                                       .circular(
                                                                           8.0),
                                                               child:
-                                                                  Image.asset(
-                                                                'assets/images/aboboyaa_1.jpeg',
+                                                                  Image.network(
+                                                                listViewWasteManagementAccountRecord
+                                                                    .profileImgWaste,
                                                                 width: double
                                                                     .infinity,
                                                                 height: double
@@ -486,7 +485,7 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              'Available',
+                                                                              listViewWasteManagementAccountRecord.status.toString(),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -517,7 +516,7 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                                                     0.0,
                                                                     0.0),
                                                         child: Text(
-                                                          listViewUser1Record
+                                                          listViewWasteManagementAccountRecord
                                                               .nickName,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -570,19 +569,19 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                                               text: TextSpan(
                                                                 children: [
                                                                   TextSpan(
-                                                                    text: listViewUser1Record
-                                                                        .minAmountUser2
-                                                                        .toString(),
+                                                                    text:
+                                                                        'Minimum Amount: ',
                                                                     style:
                                                                         TextStyle(
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .primary,
+                                                                          .primaryText,
                                                                     ),
                                                                   ),
                                                                   TextSpan(
-                                                                    text:
-                                                                        ' Cedis Per 0.8 Kg(trash)',
+                                                                    text: listViewWasteManagementAccountRecord
+                                                                        .minAmount
+                                                                        .toString(),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelSmall
@@ -594,6 +593,8 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                           ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight: FlutterFlowTheme.of(context)
@@ -648,7 +649,7 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                                               text: TextSpan(
                                                                 children: [
                                                                   TextSpan(
-                                                                    text: listViewUser1Record
+                                                                    text: listViewWasteManagementAccountRecord
                                                                         .location,
                                                                     style:
                                                                         TextStyle(),

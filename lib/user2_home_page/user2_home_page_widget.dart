@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/user2_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -64,6 +63,7 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                         EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -75,7 +75,7 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               context
-                                  .pushNamed(ProfileForUser1Widget.routeName);
+                                  .pushNamed(ProfileForUser2Widget.routeName);
                             },
                             child: Container(
                               width: 53.0,
@@ -90,13 +90,16 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.all(2.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  child: Image.asset(
-                                    'assets/images/user.png',
-                                    width: 300.0,
-                                    height: 200.0,
-                                    fit: BoxFit.cover,
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => ClipRRect(
+                                    borderRadius: BorderRadius.circular(50.0),
+                                    child: Image.network(
+                                      valueOrDefault(
+                                          currentUserDocument?.profileImg, ''),
+                                      width: 300.0,
+                                      height: 200.0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -106,7 +109,8 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                         Expanded(
                           child: AuthUserStreamWidget(
                             builder: (context) => Text(
-                              valueOrDefault(currentUserDocument?.nickName, ''),
+                              valueOrDefault(
+                                  currentUserDocument?.firstName, ''),
                               style: FlutterFlowTheme.of(context)
                                   .headlineMedium
                                   .override(
@@ -126,46 +130,6 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                         .headlineMedium
                                         .fontStyle,
                                   ),
-                            ),
-                          ),
-                        ),
-                        Builder(
-                          builder: (context) => Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 20.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          FocusScope.of(dialogContext)
-                                              .unfocus();
-                                          FocusManager.instance.primaryFocus
-                                              ?.unfocus();
-                                        },
-                                        child: User2NavWidget(),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                              child: Icon(
-                                Icons.notes_outlined,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 30.0,
-                              ),
                             ),
                           ),
                         ),
@@ -194,7 +158,7 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               22.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Avialable Requests',
+                            'Available Requests',
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
@@ -315,8 +279,16 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 context.pushNamed(
-                                                    RequestPersonalDetailsWidget
-                                                        .routeName);
+                                                  RequestPersonalDetailsWidget
+                                                      .routeName,
+                                                  queryParameters: {
+                                                    'user1Uid': serializeParam(
+                                                      listViewRequestFromPersonalRecord
+                                                          .uid,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
                                               },
                                               child: Container(
                                                 width: 193.43,
@@ -409,31 +381,15 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     0.0),
-                                                        child:
-                                                            AuthUserStreamWidget(
-                                                          builder: (context) =>
-                                                              Text(
-                                                            valueOrDefault(
-                                                                currentUserDocument
-                                                                    ?.firstName,
-                                                                ''),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .interTight(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineSmall
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineSmall
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                        child: Text(
+                                                          listViewRequestFromPersonalRecord
+                                                              .firstName,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineSmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .interTight(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .headlineSmall
@@ -443,7 +399,17 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                                       .headlineSmall
                                                                       .fontStyle,
                                                                 ),
-                                                          ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .fontStyle,
+                                                              ),
                                                         ),
                                                       ),
                                                       Row(

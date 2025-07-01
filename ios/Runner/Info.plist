@@ -53,12 +53,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>This App needs to access your location</string>
 	<key>NSCameraUsageDescription</key>
     <string>In order to take a picture,this app needs permission to access the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data,this app needs permission to access your library</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>this app needs to access your location</string>
+
     <key>UIBackgroundModes</key>
     <array>
         <string>fetch</string>

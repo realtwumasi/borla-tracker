@@ -99,7 +99,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: SignUpCompletionWidget.routeName,
           path: SignUpCompletionWidget.routePath,
-          builder: (context, params) => SignUpCompletionWidget(),
+          builder: (context, params) => SignUpCompletionWidget(
+            statusUser2: params.getParam(
+              'statusUser2',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: User1HomepageWidget.routeName,
@@ -175,6 +180,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: EditProfileImgUser2Widget.routeName,
+          path: EditProfileImgUser2Widget.routePath,
+          builder: (context, params) => EditProfileImgUser2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

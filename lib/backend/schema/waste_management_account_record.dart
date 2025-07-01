@@ -100,6 +100,11 @@ class WasteManagementAccountRecord extends FirestoreRecord {
   String get profileImgWaste => _profileImgWaste ?? '';
   bool hasProfileImgWaste() => _profileImgWaste != null;
 
+  // "status_1" field.
+  String? _status1;
+  String get status1 => _status1 ?? '';
+  bool hasStatus1() => _status1 != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _uid = snapshotData['uid'] as String?;
@@ -118,6 +123,7 @@ class WasteManagementAccountRecord extends FirestoreRecord {
     _workingDays = snapshotData['working_days'] as String?;
     _users = snapshotData['users'] as DocumentReference?;
     _profileImgWaste = snapshotData['profile_img_waste'] as String?;
+    _status1 = snapshotData['status_1'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -174,6 +180,7 @@ Map<String, dynamic> createWasteManagementAccountRecordData({
   String? workingDays,
   DocumentReference? users,
   String? profileImgWaste,
+  String? status1,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -194,6 +201,7 @@ Map<String, dynamic> createWasteManagementAccountRecordData({
       'working_days': workingDays,
       'users': users,
       'profile_img_waste': profileImgWaste,
+      'status_1': status1,
     }.withoutNulls,
   );
 
@@ -223,7 +231,8 @@ class WasteManagementAccountRecordDocumentEquality
         e1?.vehicleType == e2?.vehicleType &&
         e1?.workingDays == e2?.workingDays &&
         e1?.users == e2?.users &&
-        e1?.profileImgWaste == e2?.profileImgWaste;
+        e1?.profileImgWaste == e2?.profileImgWaste &&
+        e1?.status1 == e2?.status1;
   }
 
   @override
@@ -244,7 +253,8 @@ class WasteManagementAccountRecordDocumentEquality
         e?.vehicleType,
         e?.workingDays,
         e?.users,
-        e?.profileImgWaste
+        e?.profileImgWaste,
+        e?.status1
       ]);
 
   @override

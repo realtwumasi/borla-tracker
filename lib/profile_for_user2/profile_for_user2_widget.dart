@@ -240,7 +240,7 @@ class _ProfileForUser2WidgetState extends State<ProfileForUser2Widget>
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  context.pop();
+                  context.pushNamed(User2HomePageWidget.routeName);
                 },
               ),
             ),
@@ -255,19 +255,21 @@ class _ProfileForUser2WidgetState extends State<ProfileForUser2Widget>
             children: [
               Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: FlutterFlowTheme.of(context).primary,
+                color: Color(0x004B39EF),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(2.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(60.0),
-                    child: Image.network(
-                      'https://images.unsplash.com/photo-1592520113018-180c8bc831c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTI3fHxwcm9maWxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-                      width: 100.0,
-                      height: 100.0,
-                      fit: BoxFit.cover,
+                  child: AuthUserStreamWidget(
+                    builder: (context) => ClipRRect(
+                      borderRadius: BorderRadius.circular(60.0),
+                      child: Image.network(
+                        valueOrDefault(currentUserDocument?.profileImg, ''),
+                        width: 100.0,
+                        height: 100.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -363,20 +365,31 @@ class _ProfileForUser2WidgetState extends State<ProfileForUser2Widget>
                           ),
                         ),
                         Expanded(
-                          child: Material(
-                            color: Colors.transparent,
-                            child: SwitchListTile.adaptive(
-                              value: _model.switchListTileValue ??= true,
-                              onChanged: (newValue) async {
-                                safeSetState(() =>
-                                    _model.switchListTileValue = newValue);
-                              },
-                              title: Text(
-                                'Status',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
+                          child: AuthUserStreamWidget(
+                            builder: (context) => Material(
+                              color: Colors.transparent,
+                              child: SwitchListTile.adaptive(
+                                value: _model.switchListTileValue ??= true,
+                                onChanged: (newValue) async {
+                                  safeSetState(() =>
+                                      _model.switchListTileValue = newValue);
+                                },
+                                title: Text(
+                                  'Status',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -384,24 +397,48 @@ class _ProfileForUser2WidgetState extends State<ProfileForUser2Widget>
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
+                                ),
+                                subtitle: Text(
+                                  valueOrDefault<String>(
+                                    valueOrDefault<bool>(
+                                            currentUserDocument?.statusUser2,
+                                            false)
+                                        .toString(),
+                                    'True',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        font: GoogleFonts.interTight(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
+                                ),
+                                tileColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                activeColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                                activeTrackColor: Color(0x3439D2C0),
+                                dense: false,
+                                controlAffinity:
+                                    ListTileControlAffinity.trailing,
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 4.0, 0.0),
                               ),
-                              tileColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              activeColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                              activeTrackColor: Color(0x3439D2C0),
-                              dense: false,
-                              controlAffinity: ListTileControlAffinity.trailing,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 4.0, 0.0),
                             ),
                           ),
                         ),
@@ -413,50 +450,66 @@ class _ProfileForUser2WidgetState extends State<ProfileForUser2Widget>
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 4.0,
-                        color: Color(0x33000000),
-                        offset: Offset(
-                          0.0,
-                          2.0,
-                        ),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 2.0,
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 12.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 0.0, 0.0),
-                          child: Icon(
-                            Icons.account_circle_outlined,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed(EditProfileImgUser2Widget.routeName);
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4.0,
+                          color: Color(0x33000000),
+                          offset: Offset(
+                            0.0,
+                            2.0,
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Edit Profile',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.inter(
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(12.0),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).alternate,
+                        width: 2.0,
+                      ),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 12.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 0.0, 0.0),
+                            child: Icon(
+                              Icons.account_circle_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 24.0,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'Edit Profile',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .fontWeight,
@@ -464,17 +517,10 @@ class _ProfileForUser2WidgetState extends State<ProfileForUser2Widget>
                                         .bodyMedium
                                         .fontStyle,
                                   ),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ).animateOnPageLoad(

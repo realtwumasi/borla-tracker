@@ -15,7 +15,12 @@ import 'sign_up_completion_model.dart';
 export 'sign_up_completion_model.dart';
 
 class SignUpCompletionWidget extends StatefulWidget {
-  const SignUpCompletionWidget({super.key});
+  const SignUpCompletionWidget({
+    super.key,
+    this.statusUser2,
+  });
+
+  final String? statusUser2;
 
   static String routeName = 'SignUp_completion';
   static String routePath = '/signUpCompletion';
@@ -1140,22 +1145,6 @@ class _SignUpCompletionWidgetState extends State<SignUpCompletionWidget> {
                           if (valueOrDefault(
                                   currentUserDocument?.accountType, '') ==
                               'Waste Management') {
-                            await WasteManagementAccountRecord.collection
-                                .doc('signUpCompletion_user2')
-                                .set(createWasteManagementAccountRecordData(
-                                  email: currentUserEmail,
-                                  uid: currentUserUid,
-                                  phoneNumber:
-                                      _model.phoneNumberTextController.text,
-                                  firstName:
-                                      _model.firstNameTextController.text,
-                                  lastName: _model.lastNameTextController.text,
-                                  accountType: valueOrDefault(
-                                      currentUserDocument?.accountType, ''),
-                                  location: _model.locationTextController.text,
-                                  gender: _model.genderValue,
-                                ));
-
                             context.pushNamed(
                                 SignUpCompletionUser2Widget.routeName);
                           }

@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -64,49 +65,89 @@ class _User1EcowarriorCardViewWidgetState
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 8.0),
-      child: Container(
-        width: 220.0,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 3.0,
-              color: Color(0x33000000),
-              offset: Offset(
-                0.0,
-                1.0,
-              ),
-            )
-          ],
-          borderRadius: BorderRadius.circular(12.0),
-          border: Border.all(
-            color: FlutterFlowTheme.of(context).alternate,
-          ),
+      child: StreamBuilder<List<WasteManagementAccountRecord>>(
+        stream: queryWasteManagementAccountRecord(
+          singleRecord: true,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 5.0),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => Text(
-                            valueOrDefault(currentUserDocument?.nickName, ''),
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  font: GoogleFonts.interTight(
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              ),
+            );
+          }
+          List<WasteManagementAccountRecord>
+              videoWasteManagementAccountRecordList = snapshot.data!;
+          // Return an empty Container when the item does not exist.
+          if (snapshot.data!.isEmpty) {
+            return Container();
+          }
+          final videoWasteManagementAccountRecord =
+              videoWasteManagementAccountRecordList.isNotEmpty
+                  ? videoWasteManagementAccountRecordList.first
+                  : null;
+
+          return Container(
+            width: 220.0,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 3.0,
+                  color: Color(0x33000000),
+                  offset: Offset(
+                    0.0,
+                    1.0,
+                  ),
+                )
+              ],
+              borderRadius: BorderRadius.circular(12.0),
+              border: Border.all(
+                color: FlutterFlowTheme.of(context).alternate,
+              ),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 30.0, 0.0, 5.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                videoWasteManagementAccountRecord?.nickName,
+                                'nickName',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .fontWeight,
@@ -114,355 +155,360 @@ class _User1EcowarriorCardViewWidgetState
                                         .headlineSmall
                                         .fontStyle,
                                   ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 4.0, 0.0, 0.0),
+                          child: RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Status: ',
+                                  style: TextStyle(),
+                                ),
+                                TextSpan(
+                                  text: videoWasteManagementAccountRecord!
+                                      .status
+                                      .toString(),
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 4.0, 0.0, 0.0),
+                          child: RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Vehicle: ',
+                                  style: TextStyle(),
+                                ),
+                                TextSpan(
+                                  text: videoWasteManagementAccountRecord
+                                      .vehicleType,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 4.0, 0.0, 0.0),
+                          child: RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Working Days: ',
+                                  style: TextStyle(),
+                                ),
+                                TextSpan(
+                                  text: videoWasteManagementAccountRecord
+                                      .workingDays,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 4.0, 0.0, 0.0),
+                          child: RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Contact: ',
+                                  style: TextStyle(),
+                                ),
+                                TextSpan(
+                                  text: videoWasteManagementAccountRecord
+                                      .phoneNumber,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 4.0, 0.0, 0.0),
+                          child: RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'uid: ',
+                                  style: TextStyle(),
+                                ),
+                                TextSpan(
+                                  text: videoWasteManagementAccountRecord.uid,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            User1TrashSummitingDetailsWidget.routeName,
+                            queryParameters: {
+                              'user1Uid': serializeParam(
+                                currentUserUid,
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        child: Container(
+                          width: 200.0,
+                          height: 44.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primary,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12.0),
+                              bottomRight: Radius.circular(12.0),
+                              topLeft: Radius.circular(12.0),
+                              topRight: Radius.circular(12.0),
+                            ),
+                          ),
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            'Connect',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
-                                      .headlineSmall
+                                      .bodyMedium
                                       .fontWeight,
                                   fontStyle: FlutterFlowTheme.of(context)
-                                      .headlineSmall
+                                      .bodyMedium
                                       .fontStyle,
                                 ),
                           ),
                         ),
                       ),
                     ),
-                    Padding(
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 4.0, 0.0, 0.0),
-                      child: RichText(
-                        textScaler: MediaQuery.of(context).textScaler,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Status: ',
-                              style: TextStyle(),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await launchUrl(Uri(
+                            scheme: 'tel',
+                            path: currentPhoneNumber,
+                          ));
+                        },
+                        child: Container(
+                          width: 200.0,
+                          height: 44.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primary,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12.0),
+                              bottomRight: Radius.circular(12.0),
+                              topLeft: Radius.circular(12.0),
+                              topRight: Radius.circular(12.0),
                             ),
-                            TextSpan(
-                              text: valueOrDefault<bool>(
-                                      currentUserDocument?.statusUser2, false)
-                                  .toString(),
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primary,
-                              ),
-                            )
-                          ],
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 4.0, 0.0, 0.0),
-                      child: RichText(
-                        textScaler: MediaQuery.of(context).textScaler,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Vehicle: ',
-                              style: TextStyle(),
-                            ),
-                            TextSpan(
-                              text: valueOrDefault(
-                                  currentUserDocument?.vehicleUser2, ''),
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primary,
-                              ),
-                            )
-                          ],
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 4.0, 0.0, 0.0),
-                      child: RichText(
-                        textScaler: MediaQuery.of(context).textScaler,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Working Days: ',
-                              style: TextStyle(),
-                            ),
-                            TextSpan(
-                              text: valueOrDefault(
-                                  currentUserDocument?.workingDaysUser2, ''),
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primary,
-                              ),
-                            )
-                          ],
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 4.0, 0.0, 0.0),
-                      child: RichText(
-                        textScaler: MediaQuery.of(context).textScaler,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Contact: ',
-                              style: TextStyle(),
-                            ),
-                            TextSpan(
-                              text: currentPhoneNumber,
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primary,
-                              ),
-                            )
-                          ],
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 4.0, 0.0, 0.0),
-                      child: RichText(
-                        textScaler: MediaQuery.of(context).textScaler,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'uid: ',
-                              style: TextStyle(),
-                            ),
-                            TextSpan(
-                              text: currentUserUid,
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primary,
-                              ),
-                            )
-                          ],
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.pushNamed(
-                        User1TrashSummitingDetailsWidget.routeName,
-                        queryParameters: {
-                          'user1Uid': serializeParam(
-                            currentUserUid,
-                            ParamType.String,
                           ),
-                        }.withoutNulls,
-                      );
-                    },
-                    child: Container(
-                      width: 200.0,
-                      height: 44.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x33000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(12.0),
-                          bottomRight: Radius.circular(12.0),
-                          topLeft: Radius.circular(12.0),
-                          topRight: Radius.circular(12.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Text(
+                            'Call Now',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                          ),
                         ),
-                      ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Text(
-                        'Connect',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              color: Colors.white,
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await launchUrl(Uri(
-                        scheme: 'tel',
-                        path: currentPhoneNumber,
-                      ));
-                    },
-                    child: Container(
-                      width: 200.0,
-                      height: 44.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x33000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
-                          )
-                        ],
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(12.0),
-                          bottomRight: Radius.circular(12.0),
-                          topLeft: Radius.circular(12.0),
-                          topRight: Radius.circular(12.0),
-                        ),
-                      ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Text(
-                        'Call Now',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              color: Colors.white,
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
+            ),
+          ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);
+        },
+      ),
     );
   }
 }

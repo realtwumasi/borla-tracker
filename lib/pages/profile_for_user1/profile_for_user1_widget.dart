@@ -80,7 +80,7 @@ class _ProfileForUser1WidgetState extends State<ProfileForUser1Widget> {
                   size: 24.0,
                 ),
                 onPressed: () async {
-                  context.safePop();
+                  context.pushNamed(User1HomepageWidget.routeName);
                 },
               ),
             ),

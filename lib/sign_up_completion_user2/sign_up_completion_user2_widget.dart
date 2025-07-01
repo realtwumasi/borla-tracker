@@ -764,29 +764,55 @@ class _SignUpCompletionUser2WidgetState
                             return;
                           }
 
+                          context.pushNamed(User2HomePageWidget.routeName);
+
                           await currentUserReference!
                               .update(createUser1RecordData(
-                            firstName: _model.nickNameTextController.text,
-                            lastName: _model.minAmountTextController.text,
-                            phoneNumber: currentPhoneNumber,
-                            location: valueOrDefault(
-                                currentUserDocument?.location, ''),
-                            gender:
-                                valueOrDefault(currentUserDocument?.gender, ''),
+                            nickName: _model.nickNameTextController.text,
+                            minAmountUser2: double.tryParse(
+                                _model.minAmountTextController.text),
+                            vehicleUser2: _model.vehicleValue,
                             workingDaysUser2: _model.workingDaysValue,
                           ));
 
                           await WasteManagementAccountRecord.collection
-                              .doc('signUpCompletion_user2_contin')
-                              .set(createWasteManagementAccountRecordData(
-                                nickName: _model.nickNameTextController.text,
-                                vehicleType: _model.vehicleValue,
-                                minAmount: double.tryParse(
-                                    _model.minAmountTextController.text),
-                                workingDays: _model.workingDaysValue,
-                              ));
-
-                          context.pushNamed(User2HomePageWidget.routeName);
+                              .doc()
+                              .set({
+                            ...createWasteManagementAccountRecordData(
+                              email: currentUserEmail,
+                              uid: currentUserUid,
+                              phoneNumber: currentPhoneNumber,
+                              firstName: valueOrDefault(
+                                  currentUserDocument?.firstName, ''),
+                              lastName: valueOrDefault(
+                                  currentUserDocument?.lastName, ''),
+                              location: valueOrDefault(
+                                  currentUserDocument?.location, ''),
+                              gender: valueOrDefault(
+                                  currentUserDocument?.gender, ''),
+                              accountType: valueOrDefault(
+                                  currentUserDocument?.accountType, ''),
+                              nickName: valueOrDefault(
+                                  currentUserDocument?.nickName, ''),
+                              minAmount: valueOrDefault(
+                                  currentUserDocument?.minAmountUser2, 0.0),
+                              vehicleType: valueOrDefault(
+                                  currentUserDocument?.vehicleUser2, ''),
+                              workingDays: valueOrDefault(
+                                  currentUserDocument?.workingDaysUser2, ''),
+                              profileImgWaste: valueOrDefault<String>(
+                                valueOrDefault(
+                                    currentUserDocument?.profileImg, ''),
+                                'profile_img',
+                              ),
+                              status1: '',
+                            ),
+                            ...mapToFirestore(
+                              {
+                                'edited_time': FieldValue.serverTimestamp(),
+                              },
+                            ),
+                          });
                         },
                         text: 'Finished!',
                         options: FFButtonOptions(
