@@ -803,7 +803,7 @@ class _SignUpCompletionUser2WidgetState
                               profileImgWaste: valueOrDefault<String>(
                                 valueOrDefault(
                                     currentUserDocument?.profileImg, ''),
-                                'profile_img',
+                                'profile_img_waste',
                               ),
                               status1: '',
                             ),
