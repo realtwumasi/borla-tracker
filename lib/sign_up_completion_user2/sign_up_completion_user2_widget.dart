@@ -806,6 +806,8 @@ class _SignUpCompletionUser2WidgetState
                                 'profile_img_waste',
                               ),
                               status1: '',
+                              profileImg: valueOrDefault(
+                                  currentUserDocument?.profileImg, ''),
                             ),
                             ...mapToFirestore(
                               {

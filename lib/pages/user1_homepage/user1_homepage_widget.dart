@@ -184,7 +184,7 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(
                               22.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Avialable Eco-Warriors',
+                            'Available Eco-Warriors',
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
@@ -380,7 +380,7 @@ class _User1HomepageWidgetState extends State<User1HomepageWidget>
                                                               child:
                                                                   Image.network(
                                                                 listViewWasteManagementAccountRecord
-                                                                    .profileImgWaste,
+                                                                    .profileImg,
                                                                 width: double
                                                                     .infinity,
                                                                 height: double
