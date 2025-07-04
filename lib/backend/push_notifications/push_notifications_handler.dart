@@ -130,6 +130,7 @@ final parametersBuilderMap =
   'user1_trash_summiting_details': (data) async => ParameterData(
         allParams: {
           'user1Uid': getParameter<String>(data, 'user1Uid'),
+          'wasteManagerID': getParameter<String>(data, 'wasteManagerID'),
         },
       ),
   'task_pending_completed_user1': ParameterData.none(),

@@ -18,9 +18,11 @@ class User1TrashSummitingDetailsWidget extends StatefulWidget {
   const User1TrashSummitingDetailsWidget({
     super.key,
     required this.user1Uid,
+    required this.wasteManagerID,
   });
 
   final String? user1Uid;
+  final String? wasteManagerID;
 
   static String routeName = 'user1_trash_summiting_details';
   static String routePath = '/user1TrashSummitingDetails';
@@ -420,6 +422,7 @@ class _User1TrashSummitingDetailsWidgetState
                                   ),
                                   profileImage: valueOrDefault(
                                       currentUserDocument?.profileImg, ''),
+                                  wasteManagerID: widget.wasteManagerID,
                                 ));
                           },
                           text: 'Done',

@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -53,6 +54,27 @@ class _EditProfileImgEditingWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: SafeArea(
           top: true,
           child: Align(
@@ -64,9 +86,19 @@ class _EditProfileImgEditingWidgetState
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.memory(
+                        _model.uploadedLocalFile_uploadedImgLocalState.bytes ??
+                            Uint8List.fromList([]),
+                        width: 306.8,
+                        height: 306.8,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           final selectedMedia =
@@ -143,19 +175,9 @@ class _EditProfileImgEditingWidgetState
                         ),
                       ),
                     ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.memory(
-                        _model.uploadedLocalFile_uploadedImgLocalState.bytes ??
-                            Uint8List.fromList([]),
-                        width: 250.0,
-                        height: 250.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           {

@@ -45,6 +45,11 @@ class RequestFromPersonalRecord extends FirestoreRecord {
   String get profileImage => _profileImage ?? '';
   bool hasProfileImage() => _profileImage != null;
 
+  // "wasteManagerID" field.
+  String? _wasteManagerID;
+  String get wasteManagerID => _wasteManagerID ?? '';
+  bool hasWasteManagerID() => _wasteManagerID != null;
+
   void _initializeFields() {
     _uid = snapshotData['uid'] as String?;
     _trashImg = snapshotData['trash_img'] as String?;
@@ -52,6 +57,7 @@ class RequestFromPersonalRecord extends FirestoreRecord {
     _contact = snapshotData['contact'] as String?;
     _firstName = snapshotData['firstName'] as String?;
     _profileImage = snapshotData['profile_image'] as String?;
+    _wasteManagerID = snapshotData['wasteManagerID'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -96,6 +102,7 @@ Map<String, dynamic> createRequestFromPersonalRecordData({
   String? contact,
   String? firstName,
   String? profileImage,
+  String? wasteManagerID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -105,6 +112,7 @@ Map<String, dynamic> createRequestFromPersonalRecordData({
       'contact': contact,
       'firstName': firstName,
       'profile_image': profileImage,
+      'wasteManagerID': wasteManagerID,
     }.withoutNulls,
   );
 
@@ -122,7 +130,8 @@ class RequestFromPersonalRecordDocumentEquality
         e1?.location == e2?.location &&
         e1?.contact == e2?.contact &&
         e1?.firstName == e2?.firstName &&
-        e1?.profileImage == e2?.profileImage;
+        e1?.profileImage == e2?.profileImage &&
+        e1?.wasteManagerID == e2?.wasteManagerID;
   }
 
   @override
@@ -132,7 +141,8 @@ class RequestFromPersonalRecordDocumentEquality
         e?.location,
         e?.contact,
         e?.firstName,
-        e?.profileImage
+        e?.profileImage,
+        e?.wasteManagerID
       ]);
 
   @override

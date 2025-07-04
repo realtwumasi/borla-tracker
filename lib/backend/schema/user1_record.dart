@@ -105,6 +105,11 @@ class User1Record extends FirestoreRecord {
   String get profileImg => _profileImg ?? '';
   bool hasProfileImg() => _profileImg != null;
 
+  // "locationLanLon" field.
+  LatLng? _locationLanLon;
+  LatLng? get locationLanLon => _locationLanLon;
+  bool hasLocationLanLon() => _locationLanLon != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -124,6 +129,7 @@ class User1Record extends FirestoreRecord {
     _workingDaysUser2 = snapshotData['working_days_user2'] as String?;
     _trashImgUser1 = snapshotData['trash_img_user1'] as String?;
     _profileImg = snapshotData['profile_img'] as String?;
+    _locationLanLon = snapshotData['locationLanLon'] as LatLng?;
   }
 
   static CollectionReference get collection =>
@@ -178,6 +184,7 @@ Map<String, dynamic> createUser1RecordData({
   String? workingDaysUser2,
   String? trashImgUser1,
   String? profileImg,
+  LatLng? locationLanLon,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -199,6 +206,7 @@ Map<String, dynamic> createUser1RecordData({
       'working_days_user2': workingDaysUser2,
       'trash_img_user1': trashImgUser1,
       'profile_img': profileImg,
+      'locationLanLon': locationLanLon,
     }.withoutNulls,
   );
 
@@ -227,7 +235,8 @@ class User1RecordDocumentEquality implements Equality<User1Record> {
         e1?.vehicleUser2 == e2?.vehicleUser2 &&
         e1?.workingDaysUser2 == e2?.workingDaysUser2 &&
         e1?.trashImgUser1 == e2?.trashImgUser1 &&
-        e1?.profileImg == e2?.profileImg;
+        e1?.profileImg == e2?.profileImg &&
+        e1?.locationLanLon == e2?.locationLanLon;
   }
 
   @override
@@ -249,7 +258,8 @@ class User1RecordDocumentEquality implements Equality<User1Record> {
         e?.vehicleUser2,
         e?.workingDaysUser2,
         e?.trashImgUser1,
-        e?.profileImg
+        e?.profileImg,
+        e?.locationLanLon
       ]);
 
   @override

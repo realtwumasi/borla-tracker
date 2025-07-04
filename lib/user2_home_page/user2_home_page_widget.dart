@@ -231,7 +231,14 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                       0.0, 0.0, 0.0, 44.0),
                                   child: StreamBuilder<
                                       List<RequestFromPersonalRecord>>(
-                                    stream: queryRequestFromPersonalRecord(),
+                                    stream: queryRequestFromPersonalRecord(
+                                      queryBuilder:
+                                          (requestFromPersonalRecord) =>
+                                              requestFromPersonalRecord.where(
+                                        'wasteManagerID',
+                                        isEqualTo: currentUserUid,
+                                      ),
+                                    ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {

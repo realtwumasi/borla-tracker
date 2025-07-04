@@ -139,6 +139,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'user1Uid',
               ParamType.String,
             ),
+            wasteManagerID: params.getParam(
+              'wasteManagerID',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

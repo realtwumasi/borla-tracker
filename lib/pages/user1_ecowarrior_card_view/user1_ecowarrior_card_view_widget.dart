@@ -298,6 +298,10 @@ class _User1EcowarriorCardViewWidgetState
                           context.pushNamed(
                             User1TrashSummitingDetailsWidget.routeName,
                             queryParameters: {
+                              'wasteManagerID': serializeParam(
+                                videoWasteManagementAccountRecord.uid,
+                                ParamType.String,
+                              ),
                               'user1Uid': serializeParam(
                                 currentUserUid,
                                 ParamType.String,
