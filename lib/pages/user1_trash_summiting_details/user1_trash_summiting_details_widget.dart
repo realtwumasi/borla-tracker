@@ -423,6 +423,7 @@ class _User1TrashSummitingDetailsWidgetState
                                   profileImage: valueOrDefault(
                                       currentUserDocument?.profileImg, ''),
                                   wasteManagerID: widget.wasteManagerID,
+                                  isDone: true,
                                 ));
                           },
                           text: 'Done',
@@ -436,7 +437,7 @@ class _User1TrashSummitingDetailsWidgetState
                             padding: EdgeInsets.all(0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(

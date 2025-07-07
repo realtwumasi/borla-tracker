@@ -133,6 +133,21 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                             ),
                           ),
                         ),
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                                PendingCompletedPageUser2Widget.routeName);
+                          },
+                          child: Icon(
+                            Icons.grading_sharp,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                        ),
                       ],
                     ),
                   ),

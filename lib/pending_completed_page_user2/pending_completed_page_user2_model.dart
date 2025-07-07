@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'pending_completed_page_user2_widget.dart'
     show PendingCompletedPageUser2Widget;
@@ -15,9 +16,20 @@ class PendingCompletedPageUser2Model
       tabBarController != null ? tabBarController!.previousIndex : 0;
 
   // State field(s) for CheckboxListTile widget.
-  bool? checkboxListTileValue1;
+  Map<RequestFromPersonalRecord, bool> checkboxListTileValueMap1 = {};
+  List<RequestFromPersonalRecord> get checkboxListTileCheckedItems1 =>
+      checkboxListTileValueMap1.entries
+          .where((e) => e.value)
+          .map((e) => e.key)
+          .toList();
+
   // State field(s) for CheckboxListTile widget.
-  bool? checkboxListTileValue2;
+  Map<RequestFromPersonalRecord, bool> checkboxListTileValueMap2 = {};
+  List<RequestFromPersonalRecord> get checkboxListTileCheckedItems2 =>
+      checkboxListTileValueMap2.entries
+          .where((e) => e.value)
+          .map((e) => e.key)
+          .toList();
 
   @override
   void initState(BuildContext context) {}

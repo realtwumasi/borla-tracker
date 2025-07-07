@@ -50,6 +50,16 @@ class RequestFromPersonalRecord extends FirestoreRecord {
   String get wasteManagerID => _wasteManagerID ?? '';
   bool hasWasteManagerID() => _wasteManagerID != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  bool hasStatus() => _status != null;
+
+  // "is_done" field.
+  bool? _isDone;
+  bool get isDone => _isDone ?? false;
+  bool hasIsDone() => _isDone != null;
+
   void _initializeFields() {
     _uid = snapshotData['uid'] as String?;
     _trashImg = snapshotData['trash_img'] as String?;
@@ -58,6 +68,8 @@ class RequestFromPersonalRecord extends FirestoreRecord {
     _firstName = snapshotData['firstName'] as String?;
     _profileImage = snapshotData['profile_image'] as String?;
     _wasteManagerID = snapshotData['wasteManagerID'] as String?;
+    _status = snapshotData['status'] as String?;
+    _isDone = snapshotData['is_done'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -103,6 +115,8 @@ Map<String, dynamic> createRequestFromPersonalRecordData({
   String? firstName,
   String? profileImage,
   String? wasteManagerID,
+  String? status,
+  bool? isDone,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -113,6 +127,8 @@ Map<String, dynamic> createRequestFromPersonalRecordData({
       'firstName': firstName,
       'profile_image': profileImage,
       'wasteManagerID': wasteManagerID,
+      'status': status,
+      'is_done': isDone,
     }.withoutNulls,
   );
 
@@ -131,7 +147,9 @@ class RequestFromPersonalRecordDocumentEquality
         e1?.contact == e2?.contact &&
         e1?.firstName == e2?.firstName &&
         e1?.profileImage == e2?.profileImage &&
-        e1?.wasteManagerID == e2?.wasteManagerID;
+        e1?.wasteManagerID == e2?.wasteManagerID &&
+        e1?.status == e2?.status &&
+        e1?.isDone == e2?.isDone;
   }
 
   @override
@@ -142,7 +160,9 @@ class RequestFromPersonalRecordDocumentEquality
         e?.contact,
         e?.firstName,
         e?.profileImage,
-        e?.wasteManagerID
+        e?.wasteManagerID,
+        e?.status,
+        e?.isDone
       ]);
 
   @override

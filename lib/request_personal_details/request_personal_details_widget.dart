@@ -233,6 +233,8 @@ class _RequestPersonalDetailsWidgetState
                                             .headlineMedium
                                             .fontStyle,
                                       ),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .headlineMedium
@@ -289,6 +291,8 @@ class _RequestPersonalDetailsWidgetState
                                             .headlineMedium
                                             .fontStyle,
                                       ),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .headlineMedium
