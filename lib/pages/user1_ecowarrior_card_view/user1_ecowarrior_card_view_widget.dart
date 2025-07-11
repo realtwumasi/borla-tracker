@@ -12,7 +12,14 @@ import 'user1_ecowarrior_card_view_model.dart';
 export 'user1_ecowarrior_card_view_model.dart';
 
 class User1EcowarriorCardViewWidget extends StatefulWidget {
-  const User1EcowarriorCardViewWidget({super.key});
+  const User1EcowarriorCardViewWidget({
+    super.key,
+    required this.selectedWasteManagerID,
+    required this.wasteManagerID,
+  });
+
+  final String? selectedWasteManagerID;
+  final String? wasteManagerID;
 
   @override
   State<User1EcowarriorCardViewWidget> createState() =>
@@ -281,6 +288,46 @@ class _User1EcowarriorCardViewWidgetState
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 4.0, 0.0, 0.0),
+                          child: RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'uid: ',
+                                  style: TextStyle(),
+                                ),
+                                TextSpan(
+                                  text: videoWasteManagementAccountRecord.uid,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -304,6 +351,10 @@ class _User1EcowarriorCardViewWidgetState
                               ),
                               'user1Uid': serializeParam(
                                 currentUserUid,
+                                ParamType.String,
+                              ),
+                              'selectedWasteManagerID': serializeParam(
+                                videoWasteManagementAccountRecord.uid,
                                 ParamType.String,
                               ),
                             }.withoutNulls,

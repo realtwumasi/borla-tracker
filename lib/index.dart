@@ -15,8 +15,6 @@ export '/pending_completed_page_user2/pending_completed_page_user2_widget.dart'
     show PendingCompletedPageUser2Widget;
 export '/pages/user1_trash_summiting_details/user1_trash_summiting_details_widget.dart'
     show User1TrashSummitingDetailsWidget;
-export '/pages/task_pending_completed_user1/task_pending_completed_user1_widget.dart'
-    show TaskPendingCompletedUser1Widget;
 export '/user2_home_page/user2_home_page_widget.dart' show User2HomePageWidget;
 export '/googlemaps/googlemaps_widget.dart' show GooglemapsWidget;
 export '/sign_up_completion_user2/sign_up_completion_user2_widget.dart'
@@ -29,3 +27,5 @@ export '/request_personal_details/request_personal_details_widget.dart'
     show RequestPersonalDetailsWidget;
 export '/edit_profile_img_user2/edit_profile_img_user2_widget.dart'
     show EditProfileImgUser2Widget;
+export '/pending_ompleted_page_user1/pending_ompleted_page_user1_widget.dart'
+    show PendingOmpletedPageUser1Widget;

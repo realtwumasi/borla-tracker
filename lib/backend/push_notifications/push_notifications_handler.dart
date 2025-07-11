@@ -131,9 +131,10 @@ final parametersBuilderMap =
         allParams: {
           'user1Uid': getParameter<String>(data, 'user1Uid'),
           'wasteManagerID': getParameter<String>(data, 'wasteManagerID'),
+          'selectedWasteManagerID':
+              getParameter<String>(data, 'selectedWasteManagerID'),
         },
       ),
-  'task_pending_completed_user1': ParameterData.none(),
   'user2_homePage': ParameterData.none(),
   'googlemaps': ParameterData.none(),
   'SignUp_completion_user2': ParameterData.none(),
@@ -145,6 +146,7 @@ final parametersBuilderMap =
         },
       ),
   'edit_profile_img_user2': ParameterData.none(),
+  'pending_ompleted_page_user1': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

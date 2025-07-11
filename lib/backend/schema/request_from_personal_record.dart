@@ -60,6 +60,21 @@ class RequestFromPersonalRecord extends FirestoreRecord {
   bool get isDone => _isDone ?? false;
   bool hasIsDone() => _isDone != null;
 
+  // "time" field.
+  DateTime? _time;
+  DateTime? get time => _time;
+  bool hasTime() => _time != null;
+
+  // "edited_time" field.
+  DateTime? _editedTime;
+  DateTime? get editedTime => _editedTime;
+  bool hasEditedTime() => _editedTime != null;
+
+  // "time_complete" field.
+  DateTime? _timeComplete;
+  DateTime? get timeComplete => _timeComplete;
+  bool hasTimeComplete() => _timeComplete != null;
+
   void _initializeFields() {
     _uid = snapshotData['uid'] as String?;
     _trashImg = snapshotData['trash_img'] as String?;
@@ -70,6 +85,9 @@ class RequestFromPersonalRecord extends FirestoreRecord {
     _wasteManagerID = snapshotData['wasteManagerID'] as String?;
     _status = snapshotData['status'] as String?;
     _isDone = snapshotData['is_done'] as bool?;
+    _time = snapshotData['time'] as DateTime?;
+    _editedTime = snapshotData['edited_time'] as DateTime?;
+    _timeComplete = snapshotData['time_complete'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -117,6 +135,9 @@ Map<String, dynamic> createRequestFromPersonalRecordData({
   String? wasteManagerID,
   String? status,
   bool? isDone,
+  DateTime? time,
+  DateTime? editedTime,
+  DateTime? timeComplete,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +150,9 @@ Map<String, dynamic> createRequestFromPersonalRecordData({
       'wasteManagerID': wasteManagerID,
       'status': status,
       'is_done': isDone,
+      'time': time,
+      'edited_time': editedTime,
+      'time_complete': timeComplete,
     }.withoutNulls,
   );
 
@@ -149,7 +173,10 @@ class RequestFromPersonalRecordDocumentEquality
         e1?.profileImage == e2?.profileImage &&
         e1?.wasteManagerID == e2?.wasteManagerID &&
         e1?.status == e2?.status &&
-        e1?.isDone == e2?.isDone;
+        e1?.isDone == e2?.isDone &&
+        e1?.time == e2?.time &&
+        e1?.editedTime == e2?.editedTime &&
+        e1?.timeComplete == e2?.timeComplete;
   }
 
   @override
@@ -162,7 +189,10 @@ class RequestFromPersonalRecordDocumentEquality
         e?.profileImage,
         e?.wasteManagerID,
         e?.status,
-        e?.isDone
+        e?.isDone,
+        e?.time,
+        e?.editedTime,
+        e?.timeComplete
       ]);
 
   @override

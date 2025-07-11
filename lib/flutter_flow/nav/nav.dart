@@ -144,12 +144,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'wasteManagerID',
               ParamType.String,
             ),
+            selectedWasteManagerID: params.getParam(
+              'selectedWasteManagerID',
+              ParamType.String,
+            ),
           ),
-        ),
-        FFRoute(
-          name: TaskPendingCompletedUser1Widget.routeName,
-          path: TaskPendingCompletedUser1Widget.routePath,
-          builder: (context, params) => TaskPendingCompletedUser1Widget(),
         ),
         FFRoute(
           name: User2HomePageWidget.routeName,
@@ -190,6 +189,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: EditProfileImgUser2Widget.routeName,
           path: EditProfileImgUser2Widget.routePath,
           builder: (context, params) => EditProfileImgUser2Widget(),
+        ),
+        FFRoute(
+          name: PendingOmpletedPageUser1Widget.routeName,
+          path: PendingOmpletedPageUser1Widget.routePath,
+          builder: (context, params) => PendingOmpletedPageUser1Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

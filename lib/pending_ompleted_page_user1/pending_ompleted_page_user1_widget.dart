@@ -1,32 +1,31 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/nav_menu_user2_widget.dart';
+import '/components/nav_menu_user1_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'pending_completed_page_user2_model.dart';
-export 'pending_completed_page_user2_model.dart';
+import 'pending_ompleted_page_user1_model.dart';
+export 'pending_ompleted_page_user1_model.dart';
 
-class PendingCompletedPageUser2Widget extends StatefulWidget {
-  const PendingCompletedPageUser2Widget({super.key});
+class PendingOmpletedPageUser1Widget extends StatefulWidget {
+  const PendingOmpletedPageUser1Widget({super.key});
 
-  static String routeName = 'pending_completed_page_user2';
-  static String routePath = '/pendingCompletedPageUser2';
+  static String routeName = 'pending_ompleted_page_user1';
+  static String routePath = '/pendingOmpletedPageUser1';
 
   @override
-  State<PendingCompletedPageUser2Widget> createState() =>
-      _PendingCompletedPageUser2WidgetState();
+  State<PendingOmpletedPageUser1Widget> createState() =>
+      _PendingOmpletedPageUser1WidgetState();
 }
 
-class _PendingCompletedPageUser2WidgetState
-    extends State<PendingCompletedPageUser2Widget>
+class _PendingOmpletedPageUser1WidgetState
+    extends State<PendingOmpletedPageUser1Widget>
     with TickerProviderStateMixin {
-  late PendingCompletedPageUser2Model _model;
+  late PendingOmpletedPageUser1Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -35,7 +34,7 @@ class _PendingCompletedPageUser2WidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PendingCompletedPageUser2Model());
+    _model = createModel(context, () => PendingOmpletedPageUser1Model());
 
     _model.tabBarController = TabController(
       vsync: this,
@@ -127,7 +126,7 @@ class _PendingCompletedPageUser2WidgetState
                         FocusScope.of(dialogContext).unfocus();
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
-                      child: NavMenuUser2Widget(),
+                      child: NavMenuUser1Widget(),
                     ),
                   );
                 },
@@ -258,7 +257,7 @@ class _PendingCompletedPageUser2WidgetState
                                   queryBuilder: (requestFromPersonalRecord) =>
                                       requestFromPersonalRecord
                                           .where(
-                                            'wasteManagerID',
+                                            'uid',
                                             isEqualTo: currentUserUid,
                                           )
                                           .where(
@@ -461,143 +460,41 @@ class _PendingCompletedPageUser2WidgetState
                                                           context)
                                                       .primaryBackground,
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 0.0, 0.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        valueOrDefault<String>(
-                                                          listViewRequestFromPersonalRecord
-                                                              .editedTime
-                                                              ?.toString(),
-                                                          'time',
+                                                Text(
+                                                  valueOrDefault<String>(
+                                                    listViewRequestFromPersonalRecord
+                                                        .editedTime
+                                                        ?.toString(),
+                                                    'time',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
                                                         ),
-                                                        style:
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
-                                                      Container(
-                                                        height: 32.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      32.0),
-                                                        ),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            await listViewRequestFromPersonalRecord
-                                                                .reference
-                                                                .update({
-                                                              ...createRequestFromPersonalRecordData(
-                                                                status: 'False',
-                                                              ),
-                                                              ...mapToFirestore(
-                                                                {
-                                                                  'time_complete':
-                                                                      FieldValue
-                                                                          .serverTimestamp(),
-                                                                },
-                                                              ),
-                                                            });
-                                                          },
-                                                          text: 'Done',
-                                                          options:
-                                                              FFButtonOptions(
-                                                            height: 40.0,
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .interTight(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: Colors
-                                                                          .white,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .fontStyle,
-                                                                    ),
-                                                            elevation: 0.0,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -619,7 +516,7 @@ class _PendingCompletedPageUser2WidgetState
                                   queryBuilder: (requestFromPersonalRecord) =>
                                       requestFromPersonalRecord
                                           .where(
-                                            'wasteManagerID',
+                                            'uid',
                                             isEqualTo: currentUserUid,
                                           )
                                           .where(
@@ -822,7 +719,7 @@ class _PendingCompletedPageUser2WidgetState
                                                   text: TextSpan(
                                                     children: [
                                                       TextSpan(
-                                                        text: 'Requested: ',
+                                                        text: 'Requested:  ',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -926,7 +823,7 @@ class _PendingCompletedPageUser2WidgetState
                                                   text: TextSpan(
                                                     children: [
                                                       TextSpan(
-                                                        text: 'Completed: ',
+                                                        text: 'Completed:  ',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

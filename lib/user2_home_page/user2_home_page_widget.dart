@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/nav_menu_user2_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -51,6 +52,38 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          floatingActionButton: Builder(
+            builder: (context) => FloatingActionButton(
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return Dialog(
+                      elevation: 0,
+                      insetPadding: EdgeInsets.zero,
+                      backgroundColor: Colors.transparent,
+                      alignment: AlignmentDirectional(0.0, 0.0)
+                          .resolve(Directionality.of(context)),
+                      child: GestureDetector(
+                        onTap: () {
+                          FocusScope.of(dialogContext).unfocus();
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        child: NavMenuUser2Widget(),
+                      ),
+                    );
+                  },
+                );
+              },
+              backgroundColor: FlutterFlowTheme.of(context).primary,
+              elevation: 8.0,
+              child: Icon(
+                Icons.restore_from_trash_sharp,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+            ),
+          ),
           body: SafeArea(
             top: true,
             child: SingleChildScrollView(
@@ -133,21 +166,6 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                             ),
                           ),
                         ),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(
-                                PendingCompletedPageUser2Widget.routeName);
-                          },
-                          child: Icon(
-                            Icons.grading_sharp,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -155,7 +173,7 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                     overlapHeaders: false,
                     header: Container(
                       width: double.infinity,
-                      height: 80.0,
+                      height: 60.0,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -173,7 +191,7 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               22.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Available Requests',
+                            'Home',
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
@@ -213,9 +231,9 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 16.0, 0.0, 12.0),
+                                      16.0, 0.0, 0.0, 12.0),
                                   child: Text(
-                                    ' Requests',
+                                    ' Your Request(s)',
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -249,10 +267,15 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                     stream: queryRequestFromPersonalRecord(
                                       queryBuilder:
                                           (requestFromPersonalRecord) =>
-                                              requestFromPersonalRecord.where(
-                                        'wasteManagerID',
-                                        isEqualTo: currentUserUid,
-                                      ),
+                                              requestFromPersonalRecord
+                                                  .where(
+                                                    'wasteManagerID',
+                                                    isEqualTo: currentUserUid,
+                                                  )
+                                                  .where(
+                                                    'status',
+                                                    isEqualTo: 'True',
+                                                  ),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -313,8 +336,8 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                 );
                                               },
                                               child: Container(
-                                                width: 193.43,
-                                                height: 240.0,
+                                                width: 193.4,
+                                                height: 101.73,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -348,53 +371,6 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Expanded(
-                                                        child: Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Stack(
-                                                            children: [
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        0.0,
-                                                                        0.0),
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .only(
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            8.0),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            18.0),
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            18.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            8.0),
-                                                                  ),
-                                                                  child: Image
-                                                                      .network(
-                                                                    listViewRequestFromPersonalRecord
-                                                                        .profileImage,
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    alignment:
-                                                                        Alignment(
-                                                                            0.0,
-                                                                            -1.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
@@ -495,6 +471,106 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
                                                             ),
                                                           ),
                                                         ],
+                                                      ),
+                                                      RichText(
+                                                        textScaler:
+                                                            MediaQuery.of(
+                                                                    context)
+                                                                .textScaler,
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                              text: 'Date:  ',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                            TextSpan(
+                                                              text:
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                listViewRequestFromPersonalRecord
+                                                                    .editedTime
+                                                                    ?.toString(),
+                                                                'time',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .inter(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            )
+                                                          ],
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ],
                                                   ),

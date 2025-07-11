@@ -18,10 +18,10 @@ class User1TrashSummitingDetailsModel
   FFUploadedFile uploadedLocalFile_uploadedTrashImgLocalState =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  bool isDataUploading_uploadedTrashImgFireStore = false;
-  FFUploadedFile uploadedLocalFile_uploadedTrashImgFireStore =
+  bool isDataUploading_uploadDataIiu = false;
+  FFUploadedFile uploadedLocalFile_uploadDataIiu =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl_uploadedTrashImgFireStore = '';
+  String uploadedFileUrl_uploadDataIiu = '';
 
   @override
   void initState(BuildContext context) {}
