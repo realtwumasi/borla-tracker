@@ -44,7 +44,7 @@ class _NavMenuUser1WidgetState extends State<NavMenuUser1Widget> {
       width: 259.9,
       height: 307.77,
       decoration: BoxDecoration(
-        color: Color(0x5B39D2C0),
+        color: Color(0x434B39EF),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(20.0),
           bottomRight: Radius.circular(20.0),

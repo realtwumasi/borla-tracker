@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'user2_home_page_model.dart';
 export 'user2_home_page_model.dart';
@@ -77,8 +78,8 @@ class _User2HomePageWidgetState extends State<User2HomePageWidget> {
               },
               backgroundColor: FlutterFlowTheme.of(context).primary,
               elevation: 8.0,
-              child: Icon(
-                Icons.restore_from_trash_sharp,
+              child: FaIcon(
+                FontAwesomeIcons.alignJustify,
                 color: FlutterFlowTheme.of(context).info,
                 size: 24.0,
               ),
