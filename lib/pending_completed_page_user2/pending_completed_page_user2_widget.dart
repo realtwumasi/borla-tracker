@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pending_completed_page_user2_model.dart';
 export 'pending_completed_page_user2_model.dart';
@@ -135,8 +136,8 @@ class _PendingCompletedPageUser2WidgetState
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
             elevation: 8.0,
-            child: Icon(
-              Icons.restore_from_trash_sharp,
+            child: FaIcon(
+              FontAwesomeIcons.bars,
               color: FlutterFlowTheme.of(context).info,
               size: 24.0,
             ),

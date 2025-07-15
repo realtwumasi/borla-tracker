@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pending_ompleted_page_user1_model.dart';
 export 'pending_ompleted_page_user1_model.dart';
@@ -134,8 +135,8 @@ class _PendingOmpletedPageUser1WidgetState
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
             elevation: 8.0,
-            child: Icon(
-              Icons.restore_from_trash_sharp,
+            child: FaIcon(
+              FontAwesomeIcons.bars,
               color: FlutterFlowTheme.of(context).info,
               size: 24.0,
             ),
